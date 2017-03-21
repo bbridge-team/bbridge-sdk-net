@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
 
-namespace bBridgeAPISDK.Structs
+namespace bBridgeAPISDK.Common.Structs
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class RequestInfo
     {
         #region Properties
 
-        [JsonProperty(PropertyName = "id")]
+        [JsonProperty(PropertyName = "request_id")]
         public string Id { get; set; }
 
         #endregion

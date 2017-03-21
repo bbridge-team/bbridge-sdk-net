@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace bBridgeAPISDK.Utils.Interfaces
+namespace bBridgeAPISDK.Common.Interfaces
 {
     public interface IAsyncHttpRequester
     {

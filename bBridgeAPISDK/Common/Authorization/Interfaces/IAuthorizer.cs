@@ -1,4 +1,4 @@
-﻿namespace bBridgeAPISDK.Authorization.Interfaces
+﻿namespace bBridgeAPISDK.Common.Authorization.Interfaces
 {
     public interface IAuthorizer
     {

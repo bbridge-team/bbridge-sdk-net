@@ -1,4 +1,4 @@
-﻿using bBridgeAPISDK.Profiling.Enums;
+﻿using bBridgeAPISDK.Common.Enums;
 
 namespace bBridgeAPISDK.Profiling.Individual.Structs
 {

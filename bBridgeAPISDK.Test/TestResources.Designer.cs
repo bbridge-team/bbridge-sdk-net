@@ -23,14 +23,14 @@ namespace bBridgeAPISDK.Test {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class TestResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal TestResources() {
         }
         
         /// <summary>
@@ -40,7 +40,7 @@ namespace bBridgeAPISDK.Test {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("bBridgeAPISDK.Test.Resources", typeof(Resources).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("bBridgeAPISDK.Test.TestResources", typeof(TestResources).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -62,7 +62,7 @@ namespace bBridgeAPISDK.Test {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://bbridgeapi.cloudapp.net/v1.
+        ///   Looks up a localized string similar to http://bbridgeapi.cloudapp.net/v1/.
         /// </summary>
         internal static string bBridgeAPIBaseURI {
             get {
@@ -71,7 +71,7 @@ namespace bBridgeAPISDK.Test {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to gqr27812jr.
         /// </summary>
         internal static string bBridgeAPIPassword {
             get {
@@ -80,7 +80,7 @@ namespace bBridgeAPISDK.Test {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to farseev.
         /// </summary>
         internal static string bBridgeAPIUserName {
             get {
@@ -89,7 +89,7 @@ namespace bBridgeAPISDK.Test {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A - Za - z0 - 9 - _.+/=]*$.
+        ///   Looks up a localized string similar to ^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$.
         /// </summary>
         internal static string JWTTokenRegex {
             get {

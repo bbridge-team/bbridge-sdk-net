@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using bBridgeAPISDK.Interfaces;
+using bBridgeAPISDK.Common;
+using bBridgeAPISDK.Common.Interfaces;
+using bBridgeAPISDK.Common.Structs;
 using bBridgeAPISDK.Profiling.Individual.Structs;
-using bBridgeAPISDK.Structs;
-using bBridgeAPISDK.Utils.Interfaces;
 
 namespace bBridgeAPISDK.Profiling.Individual
 {
@@ -14,16 +14,16 @@ namespace bBridgeAPISDK.Profiling.Individual
         public IndividualUserProfiler(IAsyncHttpRequester requester):
             base(requester){}
 
-        public async Task<KeyValuePair<string, UserGeneratedContent>> RequestIndividuallUserProfiling(
+        public async Task<string> RequestIndividuallUserProfiling(
             UserGeneratedContent ugc,
             IndividualUserProfilingSettings settings,
             IResponseListener<Response<IndividualUserProfile>> responseListener)
         {
             var requestID = (await obtainRequestID(ugc, bBridgeApiProfilingSuffix + settings.GenerateURLAttributeString())).Id;
-            
+
             waitForResponseAsync(requestID, responseListener);
 
-            return new KeyValuePair<string, UserGeneratedContent>(requestID, ugc);
+            return requestID;
         }
     }
 }

@@ -1,13 +1,13 @@
-using bBridgeAPISDK.Authorization;
-using bBridgeAPISDK.Authorization.Interfaces;
-using bBridgeAPISDK.Utils;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using bBridgeAPISDK.Interfaces;
+using bBridgeAPISDK.Common;
+using bBridgeAPISDK.Common.Authorization;
+using bBridgeAPISDK.Common.Authorization.Interfaces;
+using bBridgeAPISDK.Common.Interfaces;
+using bBridgeAPISDK.Common.Structs;
 using bBridgeAPISDK.Profiling.Individual;
 using bBridgeAPISDK.Profiling.Individual.Structs;
-using bBridgeAPISDK.Structs;
 using Moq;
 using Xunit;
 
@@ -26,11 +26,11 @@ namespace bBridgeAPISDK.Test
                     It.IsNotNull<Response<IndividualUserProfile>>())).
                     Callback(() => responseReceived.Set()).Verifiable();
 
-            var baseUri = new Uri(Resources.bBridgeAPIBaseURI);
+            var baseUri = new Uri(TestResources.bBridgeAPIBaseURI);
 
             IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-                Resources.bBridgeAPIUserName,
-                Resources.bBridgeAPIPassword,
+                TestResources.bBridgeAPIUserName,
+                TestResources.bBridgeAPIPassword,
                 baseUri);
 
             var individualProfiler = new IndividualUserProfiler(

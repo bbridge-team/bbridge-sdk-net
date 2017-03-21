@@ -1,6 +1,6 @@
-﻿using bBridgeAPISDK.Authorization.Interfaces;
+﻿using bBridgeAPISDK.Common.Authorization.Interfaces;
 
-namespace bBridgeAPISDK.Authorization
+namespace bBridgeAPISDK.Common.Authorization
 {
     public class StoredTokenAuthorizer: IAuthorizer
     {

@@ -1,7 +1,7 @@
 using System;
 using System.Text.RegularExpressions;
-using bBridgeAPISDK.Authorization;
-using bBridgeAPISDK.Authorization.Interfaces;
+using bBridgeAPISDK.Common.Authorization;
+using bBridgeAPISDK.Common.Authorization.Interfaces;
 using Xunit;
 
 namespace bBridgeAPISDK.Test
@@ -11,15 +11,15 @@ namespace bBridgeAPISDK.Test
         [Fact]
         public void TestCanReceiveAuthorizationTokenForUserNameAndPassword()
         {
-            var baseUri = new Uri(Resources.bBridgeAPIBaseURI);
+            var baseUri = new Uri(TestResources.bBridgeAPIBaseURI);
 
             IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-                Resources.bBridgeAPIUserName,
-                Resources.bBridgeAPIPassword,
+                TestResources.bBridgeAPIUserName,
+                TestResources.bBridgeAPIPassword,
                 baseUri);
 
-            Assert.True(Regex.IsMatch(userPasswordAuthorizer.Token, Resources.JWTTokenRegex));
             Assert.Equal(userPasswordAuthorizer.Token.Length, 186);
+            Assert.True(Regex.IsMatch(userPasswordAuthorizer.Token, TestResources.JWTTokenRegex));
         }
     }
 }

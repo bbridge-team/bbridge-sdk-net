@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using bBridgeAPISDK.Authorization.Interfaces;
-using bBridgeAPISDK.Utils.Interfaces;
+using bBridgeAPISDK.Common.Authorization.Interfaces;
+using bBridgeAPISDK.Common.Interfaces;
 using Newtonsoft.Json;
 
-namespace bBridgeAPISDK.Utils
+namespace bBridgeAPISDK.Common
 {
     public class HttpRequester : IAsyncHttpRequester
     {
@@ -28,7 +29,7 @@ namespace bBridgeAPISDK.Utils
                 if (authorizer != null)
                 {
                     client.DefaultRequestHeaders.Add("Authorization", authorizer.Token);
-                    //TODO: client.DefaultRequestHeaders.Authorization =
+                    //client.DefaultRequestHeaders.Authorization =
                     //    new AuthenticationHeaderValue("Bearer", authorizer?.Token);
                 }
 

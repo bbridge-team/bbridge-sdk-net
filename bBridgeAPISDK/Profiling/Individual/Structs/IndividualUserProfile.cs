@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace bBridgeAPISDK.Structs
+namespace bBridgeAPISDK.Profiling.Individual.Structs
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class IndividualUserProfile

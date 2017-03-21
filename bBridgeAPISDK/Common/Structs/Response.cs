@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace bBridgeAPISDK.Structs
+namespace bBridgeAPISDK.Common.Structs
 {
     public class Response<T>
     {

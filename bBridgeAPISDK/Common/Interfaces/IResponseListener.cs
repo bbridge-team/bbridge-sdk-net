@@ -1,4 +1,4 @@
-﻿namespace bBridgeAPISDK.Interfaces
+﻿namespace bBridgeAPISDK.Common.Interfaces
 {
     public interface IResponseListener<T>
     {

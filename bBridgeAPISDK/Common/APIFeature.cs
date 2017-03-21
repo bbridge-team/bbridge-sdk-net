@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using bBridgeAPISDK.Interfaces;
-using bBridgeAPISDK.Structs;
-using bBridgeAPISDK.Utils.Interfaces;
+using bBridgeAPISDK.Common.Interfaces;
+using bBridgeAPISDK.Common.Structs;
 
-namespace bBridgeAPISDK
+namespace bBridgeAPISDK.Common
 {
     public abstract class APIFeature
     {

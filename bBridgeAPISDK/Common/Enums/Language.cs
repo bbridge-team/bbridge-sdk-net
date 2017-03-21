@@ -1,4 +1,4 @@
-﻿namespace bBridgeAPISDK.Profiling.Enums
+﻿namespace bBridgeAPISDK.Common.Enums
 {
     public enum Language
     {

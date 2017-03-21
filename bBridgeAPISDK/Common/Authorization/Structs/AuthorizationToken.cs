@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace bBridgeAPISDK.Structs
+namespace bBridgeAPISDK.Common.Authorization.Structs
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class AuthorizationToken

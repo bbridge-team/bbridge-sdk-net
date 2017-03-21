@@ -1,10 +1,9 @@
 ﻿using System;
-using bBridgeAPISDK.Authorization.Interfaces;
-using bBridgeAPISDK.Structs;
-using bBridgeAPISDK.Utils;
-using bBridgeAPISDK.Utils.Interfaces;
+using bBridgeAPISDK.Common.Authorization.Interfaces;
+using bBridgeAPISDK.Common.Authorization.Structs;
+using bBridgeAPISDK.Common.Interfaces;
 
-namespace bBridgeAPISDK.Authorization
+namespace bBridgeAPISDK.Common.Authorization
 {
     public class LazyCredentialsAuthorizer: IAuthorizer
     {
