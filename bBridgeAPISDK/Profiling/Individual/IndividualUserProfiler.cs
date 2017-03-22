@@ -9,17 +9,18 @@ namespace bBridgeAPISDK.Profiling.Individual
 {
     public class IndividualUserProfiler: APIFeature
     {
-        private const string bBridgeApiProfilingSuffix = "profiling/personal?";
-
-        public IndividualUserProfiler(IAsyncHttpRequester requester):
-            base(requester){}
+        private const string individualUserProfilingCallSuffix = "profiling/personal?";
+        public IndividualUserProfiler(IAsyncHttpRequester requester) :
+            base(requester)
+        {}
 
         public async Task<string> RequestIndividuallUserProfiling(
             UserGeneratedContent ugc,
             IndividualUserProfilingSettings settings,
-            IResponseListener<Response<IndividualUserProfile>> responseListener)
+            IResponseListener<IndividualUserProfiling> responseListener)
         {
-            var requestID = (await obtainRequestID(ugc, bBridgeApiProfilingSuffix + settings.GenerateURLAttributeString())).Id;
+            var requestID = (await obtainRequestID(ugc, individualUserProfilingCallSuffix +
+                settings.GenerateURLAttributeString())).Id;
 
             waitForResponseAsync(requestID, responseListener);
 

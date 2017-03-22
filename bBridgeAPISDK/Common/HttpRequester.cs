@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
@@ -52,7 +51,6 @@ namespace bBridgeAPISDK.Common
                     {
                         if (responseTask.Result.IsSuccessStatusCode)
                             return responseTask.Result.Content.ReadAsStringAsync().
-                                //ContinueWith(requestIdTask => requestIdTask.Result)
                                 ContinueWith(jsonTask => JsonConvert.DeserializeObject<T>(jsonTask.Result));
 
                         if (responseTask.Result.StatusCode == HttpStatusCode.NoContent) return null;

@@ -2,6 +2,14 @@
 
 namespace bBridgeAPISDK.Profiling.Individual.Structs
 {
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class IndividualUserProfiling
+    {
+        [JsonProperty(PropertyName = "profiling")]
+        public IndividualUserProfile Profile { get; set; }
+    }
+
     [JsonObject(MemberSerialization.OptIn)]
     public class IndividualUserProfile
     {
@@ -23,7 +31,7 @@ namespace bBridgeAPISDK.Profiling.Individual.Structs
         public string IncomeLevel { get; set; }
 
         [JsonProperty(PropertyName = "occupation")]
-        public bool OccupationIndustry { get; set; }
+        public string OccupationIndustry { get; set; }
 
         #endregion
     }

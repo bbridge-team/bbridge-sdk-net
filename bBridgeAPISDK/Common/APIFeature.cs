@@ -24,9 +24,9 @@ namespace bBridgeAPISDK.Common
         {
             if (requester == null)
             {
-                throw new ArgumentException("Requester must be specified in order to make API calls");
+                throw new ArgumentException("requester must be specified in order to make API calls");
             }
-
+            
             this.requester = requester;
 
             ResponseWaitTime = TimeSpan.FromMilliseconds(responseWaitTimeMilliseconds);
@@ -45,12 +45,18 @@ namespace bBridgeAPISDK.Common
 
         #region Methods
 
-        protected async Task<RequestInfo> obtainRequestID(UserGeneratedContent ugc, string suffix)
+        protected async Task<RequestInfo> obtainRequestID(object ugc, string suffix)
         {
             return await requester.RequestAsync<RequestInfo>(suffix, ugc);
         }
 
-        protected async void waitForResponseAsync<T>(string requestId, IResponseListener<T> responseListener) where T : class
+        /// <summary>
+        /// Requests the response for the requestId to be called back via responseListener
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="requestId">Previously made request id</param>
+        /// <param name="responseListener">Response callback listener</param>
+        public async void RequestAsyncAndWaitForResponseInCallback<T>(string requestId, IResponseListener<T> responseListener) where T : class
         {
             var numAttempts = ResponseWaitNumAttempts;
             T response = null;
@@ -58,7 +64,7 @@ namespace bBridgeAPISDK.Common
             while (numAttempts-- > 0 && response == null)
             {
                 await Task.Delay(ResponseWaitTime);
-
+                        
                 response = await requester.RequestAsync<T>(apiResponseSuffix + requestId);
             }
 
