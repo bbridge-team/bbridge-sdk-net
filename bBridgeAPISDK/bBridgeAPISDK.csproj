@@ -16,4 +16,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Common\Extensions\HttpExtensions.cs" />
+  </ItemGroup>
 </Project>

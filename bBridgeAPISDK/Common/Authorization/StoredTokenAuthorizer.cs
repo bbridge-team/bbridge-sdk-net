@@ -18,10 +18,12 @@ namespace bBridgeAPISDK.Common.Authorization
         #endregion
 
         #region Properties
+
         /// <summary>
         /// API authorization Token
         /// </summary>
         public string Token { get; }
+
         #endregion
     }
 }

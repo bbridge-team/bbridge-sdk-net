@@ -1,60 +1,46 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
+using System.IO;
+using System.Threading.Tasks;
 using bBridgeAPISDK.Common;
 using bBridgeAPISDK.Common.Authorization;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
-using bBridgeAPISDK.Common.Interfaces;
-using bBridgeAPISDK.Common.Structs;
-using bBridgeAPISDK.Profiling.Individual;
-using bBridgeAPISDK.Profiling.Individual.Structs;
-using Moq;
+using bBridgeAPISDK.UserProfiling.Individual;
+using bBridgeAPISDK.UserProfiling.Individual.Structs;
 using Xunit;
 
 namespace bBridgeAPISDK.Test
 {
     public class TestIndividualUserProfiling
-    {   
-        [Fact]
-        public async void TestCanRequestCompleteUserProfileAndReceiveResultsInCallback()
+    {
+		readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
+			string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
+					Environment.GetEnvironmentVariable("BBRIDGE_API_USER_NAME") :
+					TestResources.bBridgeAPIUserName,
+			string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
+					Environment.GetEnvironmentVariable("BBRIDGE_API_PASSWORD") :
+					TestResources.bBridgeAPIPassword,
+            Path.Combine(TestResources.bBridgeAPIBaseURI,
+                TestResources.bBridgeAPIAuthUrlSuffix));
+
+		readonly IndividualUserProfiler individualProfiler;
+
+
+		public TestIndividualUserProfiling()
         {
-            var responseReceived = new AutoResetEvent(false);
-            var mockResponseListener = new Mock<IResponseListener<IndividualUserProfiling>>();
-            mockResponseListener.Setup(
-                m => m.ResponseReceived(
-                    It.IsNotNull<string>(),
-                    It.IsNotNull<IndividualUserProfiling>())).
-                    Callback<string, IndividualUserProfiling>((id, profile) =>
-                {
-                    //Signaling that the result was called back
-                    responseReceived.Set();
-
-                    //Check if all attributes are not empty and not null
-                    Assert.False(string.IsNullOrEmpty(id));
-                    Assert.False(string.IsNullOrEmpty(profile.Profile.Gender));
-                    Assert.False(string.IsNullOrEmpty(profile.Profile.AgeGroup));
-                    Assert.False(string.IsNullOrEmpty(profile.Profile.EducationLevel));
-                    Assert.False(string.IsNullOrEmpty(profile.Profile.IncomeLevel));
-                    Assert.False(string.IsNullOrEmpty(profile.Profile.OccupationIndustry));
-                    Assert.False(string.IsNullOrEmpty(profile.Profile.RelationshipStatus));
-                }).Verifiable();
-
-            var baseUri = new Uri(TestResources.bBridgeAPIBaseURI);
-
-            IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-                TestResources.bBridgeAPIUserName,
-                TestResources.bBridgeAPIPassword,
-                baseUri);
-
             //Wait 60 times 1 seconds each
-            var individualProfiler = new IndividualUserProfiler(
-                new HttpRequester(baseUri, userPasswordAuthorizer))
+            individualProfiler = new IndividualUserProfiler(
+                new AuthorizedHttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
             {
                 ResponseWaitNumAttempts = 60,
                 ResponseWaitTime = TimeSpan.FromSeconds(1)
             };
+        }
 
-            await individualProfiler.RequestIndividuallUserProfiling(
+        [Fact]
+        public async Task TestCanRequestCompleteUserProfileAndReceiveResultsInCallback()
+        {
+            var result = await individualProfiler.PredictIndividualUserProfileTask(
                 new UserGeneratedContent(
                     new List<string> { "Hello friend!", "The weather is good :)" },
                         new List<string>
@@ -70,11 +56,14 @@ namespace bBridgeAPISDK.Test
                     IncomeLevel = true,
                     OccupationIndustry = true,
                     RelationshipStatus = true
-                },
-                mockResponseListener.Object);
-
-            //Waiting for response for 1 minute
-            Assert.True(responseReceived.WaitOne(TimeSpan.FromMinutes(1)));
+                });
+            
+            Assert.False(string.IsNullOrEmpty(result.Profile.Gender));
+            Assert.False(string.IsNullOrEmpty(result.Profile.AgeGroup));
+            Assert.False(string.IsNullOrEmpty(result.Profile.EducationLevel));
+            Assert.False(string.IsNullOrEmpty(result.Profile.IncomeLevel));
+            Assert.False(string.IsNullOrEmpty(result.Profile.OccupationIndustry));
+            Assert.False(string.IsNullOrEmpty(result.Profile.RelationshipStatus));
         }
     }
 }

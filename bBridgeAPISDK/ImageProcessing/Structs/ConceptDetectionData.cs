@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace bBridgeAPISDK.ImageProcessing.Structs
 {
+    /// <summary>
+    /// Structure to be send in Object Detection request
+    /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
     public class ConceptDetectionData
     {
@@ -23,13 +25,18 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
         #endregion
 
         #region Properties
-        
+
+        /// <summary>
+        /// Image URLS to be detected from
+        /// </summary>
         [JsonProperty(PropertyName = "image_urls")]
         public IEnumerable<string> ImageURLs { get; set; }
 
+        /// <summary>
+        /// Number of Objects top TopNumToReturn detected objects to return (based on model confidence)
+        /// </summary>
         [JsonProperty(PropertyName = "count")]
         public int TopNumToReturn { get; set; }
-
 
         #endregion
     }

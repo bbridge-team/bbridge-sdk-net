@@ -1,7 +1,5 @@
-using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using bBridgeAPISDK.Common;
 using bBridgeAPISDK.Common.Authorization.Structs;
 using bBridgeAPISDK.Common.Interfaces;
 using Xunit;
@@ -10,10 +8,10 @@ namespace bBridgeAPISDK.Test
 {
     public class TestNetworkUtils
     {
-        private readonly IAsyncHttpRequester httpRequester = new HttpRequester(
-            new Uri(TestResources.bBridgeAPIBaseURI));
+		readonly IAsyncHttpRequester httpRequester = new AuthorizedHttpRequester(
+			TestResources.bBridgeAPIBaseURI);
 
-        [Fact]
+		[Fact]
         public async Task TestCanUnauthorizedCallApiAndReceiveAuthorizationToken()
         {
             var token = await httpRequester.RequestAsync<AuthorizationToken>("auth",

@@ -1,40 +1,44 @@
 ﻿using System.Threading.Tasks;
 using bBridgeAPISDK.Common;
 using bBridgeAPISDK.Common.Interfaces;
-using bBridgeAPISDK.Common.Structs;
 using bBridgeAPISDK.ImageProcessing.Structs;
 
 namespace bBridgeAPISDK.ImageProcessing
 {
-    public class ImageProcessor : APIFeature
+    /// <summary>
+    /// Image processing API capabilities
+    /// </summary>
+    public class ImageProcessor : APIRequester
     {
-        private const string objectDetectionSuffix = "image/objects";
-        private const string conceptDetectionSuffix = "image/concepts";
-
+        /// <summary>
+        /// Constructor 
+        /// </summary>
+        /// <param name="requester">Any http requester that is descendant of IAsyncHttpRequester</param>
         public ImageProcessor(IAsyncHttpRequester requester) :
             base(requester)
         { }
 
-        public async Task<string> RequestImageObjectDetection(
-            ObjectDetectionData ugc,
-            IResponseListener<ImageObjects> responseListener)
+        /// <summary>
+        /// Performs Object detection API request
+        /// </summary>
+        /// <param name="imagesData">Image to detect objects from</param>
+        /// <returns></returns>
+        public async Task<ImageObjects> DetectImageObjects(
+            ObjectDetectionData imagesData)
         {
-            var requestID = (await obtainRequestID(ugc, objectDetectionSuffix)).Id;
-
-            waitForResponseAsync(requestID, responseListener);
-
-            return requestID;
+            return await ReceiveResponseAsync<ImageObjects>(
+                (await RequestAsync(imagesData, bBridgeAPIURLSuffixes.ObjectDetectionSuffix)).Id);
         }
-
-        public async Task<string> RequestImageConceptDetection(
-            ConceptDetectionData ugc,
-            IResponseListener<ImageConcepts> responseListener)
+        /// <summary>
+        /// Performs Image concept detection API request
+        /// </summary>
+        /// <param name="imagesData">Images to detect concepts from</param>
+        /// <returns></returns>
+        public async Task<ImageConcepts> DetectImageConcepts(
+            ConceptDetectionData imagesData)
         {
-            var requestID = (await obtainRequestID(ugc, conceptDetectionSuffix)).Id;
-
-            waitForResponseAsync(requestID, responseListener);
-
-            return requestID;
+            return await ReceiveResponseAsync<ImageConcepts>(
+                (await RequestAsync(imagesData, bBridgeAPIURLSuffixes.ConceptDetectionSuffix)).Id);
         }
     }
 }

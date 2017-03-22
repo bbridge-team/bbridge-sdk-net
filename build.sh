@@ -1,0 +1,11 @@
+cd ./bBridgeAPISDK.Test
+dotnet restore
+dotnet test --filter "FullyQualifiedName=bBridgeAPISDK.Test.TestAuthorization.TestCanReceiveAuthorizationTokenForUserNameAndPassword"
+dotnet test --filter "FullyQualifiedName=bBridgeAPISDK.Test.TestImageProcessing.TestCanRequestObjectDetectionAndReceiveResultsInCallback"
+dotnet test --filter "FullyQualifiedName=bBridgeAPISDK.Test.TestImageProcessing.TestCanRequestConceptDetectionAndReceiveResultsInCallback"
+dotnet test --filter "FullyQualifiedName=bBridgeAPISDK.Test.TestIndividualUserProfiling.TestCanRequestCompleteUserProfileAndReceiveResultsInCallback"
+dotnet test --filter "FullyQualifiedName=bBridgeAPISDK.Test.TestNetworkUtils.TestCanUnauthorizedCallApiAndReceiveAuthorizationToken"
+dotnet test --filter "FullyQualifiedName=bBridgeAPISDK.Test.TestNLP.TestCanRequestPOSDetectionAndReceiveResultsInCallback"
+dotnet test --filter "FullyQualifiedName=bBridgeAPISDK.Test.TestNLP.TestCanRequestSentimentDetectionAndReceiveResultsInCallback"
+dotnet test --filter "FullyQualifiedName=bBridgeAPISDK.Test.TestNLP.TestCanRequestNERDetectionAndReceiveResultsInCallback"
+

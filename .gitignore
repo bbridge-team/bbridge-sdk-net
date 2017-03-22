@@ -3,10 +3,11 @@
 # or wget:
 # wget --no-check-certificate http://gist.githubusercontent.com/kmorcinek/2710267/raw/.gitignore
 
-# User-specific files
+# User-specific files (including Mac)
 *.suo
 *.user
 *.sln.docstates
+*.userprefs
 
 # Build results
 
