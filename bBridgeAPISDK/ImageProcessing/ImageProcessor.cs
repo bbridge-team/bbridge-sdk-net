@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using bBridgeAPISDK.Common;
 using bBridgeAPISDK.Common.Interfaces;
-using bBridgeAPISDK.Common.Structs;
 using bBridgeAPISDK.ImageProcessing.Structs;
 
 namespace bBridgeAPISDK.ImageProcessing
@@ -21,7 +20,7 @@ namespace bBridgeAPISDK.ImageProcessing
         {
             var requestID = (await obtainRequestID(ugc, objectDetectionSuffix)).Id;
 
-            waitForResponseAsync(requestID, responseListener);
+            RequestAsyncAndWaitForResponseInCallback(requestID, responseListener);
 
             return requestID;
         }
@@ -32,7 +31,7 @@ namespace bBridgeAPISDK.ImageProcessing
         {
             var requestID = (await obtainRequestID(ugc, conceptDetectionSuffix)).Id;
 
-            waitForResponseAsync(requestID, responseListener);
+            RequestAsyncAndWaitForResponseInCallback(requestID, responseListener);
 
             return requestID;
         }

@@ -21,6 +21,6 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
         public ErrorMessage Error { get; set; }
 
         [JsonProperty(PropertyName = "concepts", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, string> Concepts { get; set; }
+        public Dictionary<string, double> Concepts { get; set; }
     }
 }

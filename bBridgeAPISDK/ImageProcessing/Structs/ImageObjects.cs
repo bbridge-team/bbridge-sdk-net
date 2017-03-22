@@ -24,7 +24,7 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
         public string Name { get; set; }
 
         [JsonProperty(PropertyName = "score")]
-        public string Score { get; set; }
+        public double Score { get; set; }
 
         [JsonProperty(PropertyName = "x")]
         public double LeftTopCornerX { get; set; }

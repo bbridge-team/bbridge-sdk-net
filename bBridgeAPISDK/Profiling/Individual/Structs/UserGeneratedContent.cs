@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace bBridgeAPISDK.Common.Structs
+namespace bBridgeAPISDK.Profiling.Individual.Structs
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class UserGeneratedContent

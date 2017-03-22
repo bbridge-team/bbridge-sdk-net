@@ -22,7 +22,7 @@ namespace bBridgeAPISDK.Profiling.Individual
             var requestID = (await obtainRequestID(ugc, individualUserProfilingCallSuffix +
                 settings.GenerateURLAttributeString())).Id;
 
-            waitForResponseAsync(requestID, responseListener);
+            RequestAsyncAndWaitForResponseInCallback(requestID, responseListener);
 
             return requestID;
         }
