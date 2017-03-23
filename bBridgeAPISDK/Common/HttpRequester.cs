@@ -12,22 +12,39 @@ namespace bBridgeAPISDK.Common
     public class HttpRequester : IAsyncHttpRequester
     {
         private readonly IAuthorizer authorizer;
-        public HttpRequester(Uri baseAdress, IAuthorizer authorizer = null)
+        /// <summary>
+        /// Constructor of basic http requester
+        /// </summary>
+        /// <param name="baseAdress">Base API adress</param>
+        /// <param name="authorizer">Authorizer of a user (if needed)</param>
+        public HttpRequester(string baseAdress, IAuthorizer authorizer = null)
         {
             this.authorizer = authorizer;
             BaseAdress = baseAdress;
         }
-        public Uri BaseAdress { get; }
+        /// <summary>
+        /// Based API URI
+        /// </summary>
+        public string BaseAdress { get; }
 
+        /// <summary>
+        /// Makes async http request in POST if data specified and GET if data is not specified
+        /// </summary>
+        /// <typeparam name="T">Result deserialization type</typeparam>
+        /// <param name="urlSuffix">Suffix of the aprticular URL request</param>
+        /// <param name="data">Data to be sent in POST request body</param>
+        /// <returns>Request result deserialized as T</returns>
         public async Task<T> RequestAsync<T>(string urlSuffix, object data = null) where T : class
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = BaseAdress;
+                client.BaseAddress = new Uri(BaseAdress);
 
                 if (authorizer != null)
                 {
                     client.DefaultRequestHeaders.Add("Authorization", authorizer.Token);
+                    //TODO: This supposed to be changed when we follow the standart
+                    //authorization protocol with auth method specified
                     //client.DefaultRequestHeaders.Authorization =
                     //    new AuthenticationHeaderValue("Bearer", authorizer?.Token);
                 }

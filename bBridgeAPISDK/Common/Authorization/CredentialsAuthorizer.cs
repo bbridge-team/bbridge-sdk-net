@@ -22,7 +22,7 @@ namespace bBridgeAPISDK.Common.Authorization
         /// </summary> 
         /// <param name="username">Name of bBridge API user</param>
         /// <param name="password">Password of bBridge API user</param>
-        public LazyCredentialsAuthorizer(string username, string password, Uri authBaseUri)
+        public LazyCredentialsAuthorizer(string username, string password, string authBaseUri)
         {
             UserName = username;
             Password = password;

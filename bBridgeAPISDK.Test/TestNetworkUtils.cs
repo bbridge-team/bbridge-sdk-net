@@ -11,7 +11,7 @@ namespace bBridgeAPISDK.Test
     public class TestNetworkUtils
     {
         private readonly IAsyncHttpRequester httpRequester = new HttpRequester(
-            new Uri(TestResources.bBridgeAPIBaseURI));
+            TestResources.bBridgeAPIBaseURI);
 
         [Fact]
         public async Task TestCanUnauthorizedCallApiAndReceiveAuthorizationToken()

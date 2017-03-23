@@ -15,6 +15,24 @@ namespace bBridgeAPISDK.Test
 {
     public class TestNLP
     {
+        private readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
+TestResources.bBridgeAPIUserName,
+TestResources.bBridgeAPIPassword,
+TestResources.bBridgeAPIBaseURI);
+
+        private readonly NLProcessor nlpProcessor;
+
+        public TestNLP()
+        {
+            //Wait 60 times 1 seconds each
+            nlpProcessor = new NLProcessor(
+                new HttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
+            {
+                ResponseWaitNumAttempts = 60,
+                ResponseWaitTime = TimeSpan.FromSeconds(1)
+            };
+        }
+
         [Fact]
         public async void TestCanRequestPOSDetectionAndReceiveResultsInCallback()
         {
@@ -43,24 +61,9 @@ namespace bBridgeAPISDK.Test
                         }
                     }).Verifiable();
 
-            var baseUri = new Uri(TestResources.bBridgeAPIBaseURI);
-
-            IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-                TestResources.bBridgeAPIUserName,
-                TestResources.bBridgeAPIPassword,
-                baseUri);
-
-            //Wait 60 times 1 seconds each
-            var nlpProcessor = new NLProcessor(
-                new HttpRequester(baseUri, userPasswordAuthorizer))
-            {
-                ResponseWaitNumAttempts = 60,
-                ResponseWaitTime = TimeSpan.FromSeconds(1)
-            };
-
             await nlpProcessor.RequestPartOfSpeechDetection(
                 new NLPUserGeneratedContent(new List<string> { "Putin is Trump's friend", "The weather is good :)" }),
-                Language.English, 
+                Language.English,
                 mockResponseListener.Object);
 
             //Waiting for response for 1 minute
@@ -91,21 +94,6 @@ namespace bBridgeAPISDK.Test
                             Assert.InRange(sentiment, 0, 1);
                         }
                     }).Verifiable();
-
-            var baseUri = new Uri(TestResources.bBridgeAPIBaseURI);
-
-            IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-                TestResources.bBridgeAPIUserName,
-                TestResources.bBridgeAPIPassword,
-                baseUri);
-
-            //Wait 60 times 1 seconds each
-            var nlpProcessor = new NLProcessor(
-                new HttpRequester(baseUri, userPasswordAuthorizer))
-            {
-                ResponseWaitNumAttempts = 60,
-                ResponseWaitTime = TimeSpan.FromSeconds(1)
-            };
 
             await nlpProcessor.RequestSentimentAnalysis(
                 new NLPUserGeneratedContent(new List<string> { "Putin is Trump's friend", "The weather is good :)" }),
@@ -144,21 +132,6 @@ namespace bBridgeAPISDK.Test
                             }
                         }
                     }).Verifiable();
-
-            var baseUri = new Uri(TestResources.bBridgeAPIBaseURI);
-
-            IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-                TestResources.bBridgeAPIUserName,
-                TestResources.bBridgeAPIPassword,
-                baseUri);
-
-            //Wait 60 times 1 seconds each
-            var nlpProcessor = new NLProcessor(
-                new HttpRequester(baseUri, userPasswordAuthorizer))
-            {
-                ResponseWaitNumAttempts = 60,
-                ResponseWaitTime = TimeSpan.FromSeconds(1)
-            };
 
             await nlpProcessor.RequestNERRecognition(
                 new NLPUserGeneratedContent(new List<string> { "Putin is Trump's friend", "The weather is good :)" }),

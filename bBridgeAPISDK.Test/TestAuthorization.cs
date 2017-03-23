@@ -11,12 +11,10 @@ namespace bBridgeAPISDK.Test
         [Fact]
         public void TestCanReceiveAuthorizationTokenForUserNameAndPassword()
         {
-            var baseUri = new Uri(TestResources.bBridgeAPIBaseURI);
-
             IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
                 TestResources.bBridgeAPIUserName,
                 TestResources.bBridgeAPIPassword,
-                baseUri);
+                TestResources.bBridgeAPIBaseURI);
 
             Assert.Equal(userPasswordAuthorizer.Token.Length, 186);
             Assert.True(Regex.IsMatch(userPasswordAuthorizer.Token, TestResources.JWTTokenRegex));

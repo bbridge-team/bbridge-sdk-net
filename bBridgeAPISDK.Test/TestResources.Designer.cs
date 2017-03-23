@@ -71,7 +71,7 @@ namespace bBridgeAPISDK.Test {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to gqr27812jr.
+        ///   Looks up a localized string similar to YourNExTAPIPassword.
         /// </summary>
         internal static string bBridgeAPIPassword {
             get {
@@ -80,7 +80,7 @@ namespace bBridgeAPISDK.Test {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to farseev.
+        ///   Looks up a localized string similar to YourNExTAPIUserName.
         /// </summary>
         internal static string bBridgeAPIUserName {
             get {

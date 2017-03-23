@@ -14,6 +14,24 @@ namespace bBridgeAPISDK.Test
 {
     public class TestImageProcessing
     {
+        private readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
+                TestResources.bBridgeAPIUserName,
+                TestResources.bBridgeAPIPassword,
+                TestResources.bBridgeAPIBaseURI);
+
+        private readonly ImageProcessor imageProcessor;
+
+
+        public TestImageProcessing()
+        {
+            //Wait 60 times 1 seconds each
+            imageProcessor = new ImageProcessor(new HttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
+            {
+                ResponseWaitNumAttempts = 60,
+                ResponseWaitTime = TimeSpan.FromSeconds(1)
+            };
+        }
+
         [Fact]
         public async void TestCanRequestObjectDetectionAndReceiveResultsInCallback()
         {
@@ -38,21 +56,6 @@ namespace bBridgeAPISDK.Test
                             Assert.InRange(obj.Score, 0.00001, 1);
                         }
                     }).Verifiable();
-
-            var baseUri = new Uri(TestResources.bBridgeAPIBaseURI);
-
-            IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-                TestResources.bBridgeAPIUserName,
-                TestResources.bBridgeAPIPassword,
-                baseUri);
-
-            //Wait 60 times 1 seconds each
-            var imageProcessor = new ImageProcessor(
-                new HttpRequester(baseUri, userPasswordAuthorizer))
-            {
-                ResponseWaitNumAttempts = 60,
-                ResponseWaitTime = TimeSpan.FromSeconds(1)
-            };
 
             await imageProcessor.RequestImageObjectDetection(
                 new ObjectDetectionData("https://pbs.twimg.com/media/C6ij4CLUwAAxu9r.jpg", 0.5),
@@ -92,21 +95,6 @@ namespace bBridgeAPISDK.Test
                         }
                         //Assert.False(string.IsNullOrEmpty(concepts.Objects[0].Name));
                     }).Verifiable();
-
-            var baseUri = new Uri(TestResources.bBridgeAPIBaseURI);
-
-            IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-                TestResources.bBridgeAPIUserName,
-                TestResources.bBridgeAPIPassword,
-                baseUri);
-
-            //Wait 60 times 1 seconds each
-            var imageProcessor = new ImageProcessor(
-                new HttpRequester(baseUri, userPasswordAuthorizer))
-            {
-                ResponseWaitNumAttempts = 60,
-                ResponseWaitTime = TimeSpan.FromSeconds(1)
-            };
 
             await imageProcessor.RequestImageConceptDetection(
                 new ConceptDetectionData(

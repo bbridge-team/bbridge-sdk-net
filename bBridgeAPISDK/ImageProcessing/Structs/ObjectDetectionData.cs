@@ -32,10 +32,14 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
         #endregion
 
         #region Properties
-
+        /// <summary>
+        /// URL of the image
+        /// </summary>
         [JsonProperty(PropertyName = "url")]
         public string ImageUri { get; set; }
-
+        /// <summary>
+        /// Treshold to cut image detection results that confidence is lower than the treshold
+        /// </summary>
         [JsonProperty(PropertyName = "threshold")]
         public double DetectionTreshold { get; set; }
 

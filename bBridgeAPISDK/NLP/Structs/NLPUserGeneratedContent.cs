@@ -4,6 +4,9 @@ using Newtonsoft.Json;
 
 namespace bBridgeAPISDK.NLP.Structs
 {
+    /// <summary>
+    /// Structure to be passed as an imput of NLP processing node
+    /// </summary>
     [JsonObject(MemberSerialization.OptIn)]
     public class NLPUserGeneratedContent
     {
@@ -21,6 +24,9 @@ namespace bBridgeAPISDK.NLP.Structs
             Sentences = new List<string>(sentences);
         }
 
+        /// <summary>
+        /// Sentances to be processed
+        /// </summary>
         [JsonProperty(PropertyName = "sentences")]
         public List<string> Sentences { get; set; }
     }

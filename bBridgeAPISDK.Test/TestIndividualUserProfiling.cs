@@ -5,7 +5,6 @@ using bBridgeAPISDK.Common;
 using bBridgeAPISDK.Common.Authorization;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
 using bBridgeAPISDK.Common.Interfaces;
-using bBridgeAPISDK.Common.Structs;
 using bBridgeAPISDK.Profiling.Individual;
 using bBridgeAPISDK.Profiling.Individual.Structs;
 using Moq;
@@ -14,7 +13,26 @@ using Xunit;
 namespace bBridgeAPISDK.Test
 {
     public class TestIndividualUserProfiling
-    {   
+    {
+        private readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
+        TestResources.bBridgeAPIUserName,
+        TestResources.bBridgeAPIPassword,
+        TestResources.bBridgeAPIBaseURI);
+
+        private readonly IndividualUserProfiler individualProfiler;
+
+
+        public TestIndividualUserProfiling()
+        {
+            //Wait 60 times 1 seconds each
+            individualProfiler = new IndividualUserProfiler(
+                new HttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
+            {
+                ResponseWaitNumAttempts = 60,
+                ResponseWaitTime = TimeSpan.FromSeconds(1)
+            };
+        }
+
         [Fact]
         public async void TestCanRequestCompleteUserProfileAndReceiveResultsInCallback()
         {
@@ -38,21 +56,6 @@ namespace bBridgeAPISDK.Test
                     Assert.False(string.IsNullOrEmpty(profile.Profile.OccupationIndustry));
                     Assert.False(string.IsNullOrEmpty(profile.Profile.RelationshipStatus));
                 }).Verifiable();
-
-            var baseUri = new Uri(TestResources.bBridgeAPIBaseURI);
-
-            IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-                TestResources.bBridgeAPIUserName,
-                TestResources.bBridgeAPIPassword,
-                baseUri);
-
-            //Wait 60 times 1 seconds each
-            var individualProfiler = new IndividualUserProfiler(
-                new HttpRequester(baseUri, userPasswordAuthorizer))
-            {
-                ResponseWaitNumAttempts = 60,
-                ResponseWaitTime = TimeSpan.FromSeconds(1)
-            };
 
             await individualProfiler.RequestIndividuallUserProfiling(
                 new UserGeneratedContent(

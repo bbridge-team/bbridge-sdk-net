@@ -5,10 +5,13 @@ using bBridgeAPISDK.Common.Structs;
 
 namespace bBridgeAPISDK.Common
 {
+    /// <summary>
+    /// Base class for all API features
+    /// </summary>
     public abstract class APIFeature
     {
         #region Fields
-
+        ///
         protected const string apiResponseSuffix = "response?id=";
 
         private const int responseWaitTimeMilliseconds = 500;
@@ -20,6 +23,10 @@ namespace bBridgeAPISDK.Common
 
         #region Constructors
 
+        /// <summary>
+        /// Constructor for basic class
+        /// </summary>
+        /// <param name="requester">Http requester descendant</param>
         protected APIFeature(IAsyncHttpRequester requester)
         {
             if (requester == null)
@@ -37,17 +44,27 @@ namespace bBridgeAPISDK.Common
 
         #region Properties
 
+        /// <summary>
+        /// Time to wait for response before rerequest
+        /// </summary>
         public TimeSpan ResponseWaitTime { get; set; }
 
+        //Number of re-requests
         public int ResponseWaitNumAttempts { get; set; }
 
         #endregion
 
         #region Methods
 
-        protected async Task<RequestInfo> obtainRequestID(object ugc, string suffix)
+        /// <summary>
+        /// Initiate a request
+        /// </summary>
+        /// <param name="ugc">data to be sent in POST request</param>
+        /// <param name="urlSuffix">API feature URL suffix</param>
+        /// <returns></returns>
+        protected async Task<RequestInfo> obtainRequestID(object ugc, string urlSuffix)
         {
-            return await requester.RequestAsync<RequestInfo>(suffix, ugc);
+            return await requester.RequestAsync<RequestInfo>(urlSuffix, ugc);
         }
 
         /// <summary>
