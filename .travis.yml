@@ -4,4 +4,4 @@ sudo: required
 mono: none
 dotnet: 1.0.1
 script:
-  - ./bBridgeAPISDK.Test/build.sh --quiet verify
+  - ./build.sh --quiet verify
