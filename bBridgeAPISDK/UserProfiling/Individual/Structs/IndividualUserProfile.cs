@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace bBridgeAPISDK.Profiling.Individual.Structs
+namespace bBridgeAPISDK.UserProfiling.Individual.Structs
 {
 
     /// <summary>

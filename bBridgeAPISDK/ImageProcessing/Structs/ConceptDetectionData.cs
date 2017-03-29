@@ -25,6 +25,7 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
         #endregion
 
         #region Properties
+
         /// <summary>
         /// Image URLS to be detected from
         /// </summary>

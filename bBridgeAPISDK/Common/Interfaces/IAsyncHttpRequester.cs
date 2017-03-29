@@ -10,10 +10,6 @@ namespace bBridgeAPISDK.Common.Interfaces
     public interface IAsyncHttpRequester
     {
         /// <summary>
-        /// Base Adress of the HTTP server
-        /// </summary>
-        string BaseAdress { get; }
-        /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T">Result deserialization type</typeparam>

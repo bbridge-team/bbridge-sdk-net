@@ -10,7 +10,7 @@
         /// API responce callback
         /// </summary>
         /// <param name="requestId">initial request id</param>
-        /// <param name="respond">Repond data of type T</param>
-        void ResponseReceived(string requestId, T respond);
+        /// <param name="response">Response data of type T</param>
+        void ResponseReceived(string requestId, T response);
     }
 }

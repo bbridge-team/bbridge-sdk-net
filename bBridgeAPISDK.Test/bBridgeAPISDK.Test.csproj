@@ -25,6 +25,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>TestResources.resx</DependentUpon>
     </Compile>
+    <Compile Remove="TestNetworkUtils.cs" />
   </ItemGroup>
 
   <ItemGroup>

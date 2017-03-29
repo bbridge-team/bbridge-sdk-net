@@ -1,4 +1,3 @@
-using System;
 using System.Text.RegularExpressions;
 using bBridgeAPISDK.Common.Authorization;
 using bBridgeAPISDK.Common.Authorization.Interfaces;

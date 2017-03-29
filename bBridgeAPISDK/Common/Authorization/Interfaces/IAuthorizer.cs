@@ -1,6 +1,6 @@
 ﻿namespace bBridgeAPISDK.Common.Authorization.Interfaces
 {
-    public interface IAuthorizer
+	public interface IAuthorizer
     {
         /// <summary>
         /// API Authorization Token 

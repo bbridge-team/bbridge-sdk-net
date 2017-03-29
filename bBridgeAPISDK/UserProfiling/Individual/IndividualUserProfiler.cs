@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using bBridgeAPISDK.Common;
 using bBridgeAPISDK.Common.Interfaces;
-using bBridgeAPISDK.Profiling.Individual.Structs;
+using bBridgeAPISDK.UserProfiling.Individual.Structs;
 
-namespace bBridgeAPISDK.Profiling.Individual
+namespace bBridgeAPISDK.UserProfiling.Individual
 {
     /// <summary>
     /// Individual User Profiling API capabilities

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using bBridgeAPISDK.Common;
 using bBridgeAPISDK.Common.Authorization;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
@@ -14,18 +15,18 @@ namespace bBridgeAPISDK.Test
 {
     public class TestImageProcessing
     {
-        private readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-                TestResources.bBridgeAPIUserName,
-                TestResources.bBridgeAPIPassword,
-                TestResources.bBridgeAPIBaseURI);
+		readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
+				TestResources.bBridgeAPIUserName,
+				TestResources.bBridgeAPIPassword,
+				TestResources.bBridgeAPIBaseURI);
 
-        private readonly ImageProcessor imageProcessor;
+		readonly ImageProcessor imageProcessor;
 
 
-        public TestImageProcessing()
+		public TestImageProcessing()
         {
             //Wait 60 times 1 seconds each
-            imageProcessor = new ImageProcessor(new HttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
+            imageProcessor = new ImageProcessor(new AuthorizedHttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
             {
                 ResponseWaitNumAttempts = 60,
                 ResponseWaitTime = TimeSpan.FromSeconds(1)
@@ -33,7 +34,7 @@ namespace bBridgeAPISDK.Test
         }
 
         [Fact]
-        public async void TestCanRequestObjectDetectionAndReceiveResultsInCallback()
+        public async Task TestCanRequestObjectDetectionAndReceiveResultsInCallback()
         {
             var responseReceived = new AutoResetEvent(false);
             var mockResponseListener = new Mock<IResponseListener<ImageObjects>>();
@@ -66,7 +67,7 @@ namespace bBridgeAPISDK.Test
         }
 
         [Fact]
-        public async void TestCanRequestConceptDetectionAndReceiveResultsInCallback()
+        public async Task TestCanRequestConceptDetectionAndReceiveResultsInCallback()
         {
             var responseReceived = new AutoResetEvent(false);
             var mockResponseListener = new Mock<IResponseListener<ImageConcepts>>();

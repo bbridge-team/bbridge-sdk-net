@@ -1,6 +1,6 @@
 ﻿using bBridgeAPISDK.Common.Enums;
 
-namespace bBridgeAPISDK.Profiling.Individual.Structs
+namespace bBridgeAPISDK.UserProfiling.Individual.Structs
 {
     public class IndividualUserProfilingSettings
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using bBridgeAPISDK.Common;
 using bBridgeAPISDK.Common.Authorization;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
@@ -15,18 +16,18 @@ namespace bBridgeAPISDK.Test
 {
     public class TestNLP
     {
-        private readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-TestResources.bBridgeAPIUserName,
-TestResources.bBridgeAPIPassword,
-TestResources.bBridgeAPIBaseURI);
+		readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
+			TestResources.bBridgeAPIUserName,
+			TestResources.bBridgeAPIPassword,
+			TestResources.bBridgeAPIBaseURI);
 
-        private readonly NLProcessor nlpProcessor;
+		private readonly NLProcessor nlpProcessor;
 
         public TestNLP()
         {
             //Wait 60 times 1 seconds each
             nlpProcessor = new NLProcessor(
-                new HttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
+                new AuthorizedHttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
             {
                 ResponseWaitNumAttempts = 60,
                 ResponseWaitTime = TimeSpan.FromSeconds(1)
@@ -34,7 +35,7 @@ TestResources.bBridgeAPIBaseURI);
         }
 
         [Fact]
-        public async void TestCanRequestPOSDetectionAndReceiveResultsInCallback()
+        public async Task TestCanRequestPOSDetectionAndReceiveResultsInCallback()
         {
             var responseReceived = new AutoResetEvent(false);
             var mockResponseListener = new Mock<IResponseListener<PartOfSpeechTags>>();
@@ -72,7 +73,7 @@ TestResources.bBridgeAPIBaseURI);
 
 
         [Fact]
-        public async void TestCanRequestSentimentDetectionAndReceiveResultsInCallback()
+        public async Task TestCanRequestSentimentDetectionAndReceiveResultsInCallback()
         {
             var responseReceived = new AutoResetEvent(false);
             var mockResponseListener = new Mock<IResponseListener<Sentiments>>();
@@ -105,7 +106,7 @@ TestResources.bBridgeAPIBaseURI);
         }
 
         [Fact]
-        public async void TestCanRequestNERDetectionAndReceiveResultsInCallback()
+        public async Task TestCanRequestNERDetectionAndReceiveResultsInCallback()
         {
             var responseReceived = new AutoResetEvent(false);
             var mockResponseListener = new Mock<IResponseListener<NamedEntities>>();

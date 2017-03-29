@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using bBridgeAPISDK.Common;
 using bBridgeAPISDK.Common.Authorization;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
 using bBridgeAPISDK.Common.Interfaces;
-using bBridgeAPISDK.Profiling.Individual;
-using bBridgeAPISDK.Profiling.Individual.Structs;
+using bBridgeAPISDK.UserProfiling.Individual;
+using bBridgeAPISDK.UserProfiling.Individual.Structs;
 using Moq;
 using Xunit;
 
@@ -14,19 +15,19 @@ namespace bBridgeAPISDK.Test
 {
     public class TestIndividualUserProfiling
     {
-        private readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-        TestResources.bBridgeAPIUserName,
-        TestResources.bBridgeAPIPassword,
-        TestResources.bBridgeAPIBaseURI);
+		readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
+			TestResources.bBridgeAPIUserName,
+			TestResources.bBridgeAPIPassword,
+			TestResources.bBridgeAPIBaseURI);
 
-        private readonly IndividualUserProfiler individualProfiler;
+		readonly IndividualUserProfiler individualProfiler;
 
 
-        public TestIndividualUserProfiling()
+		public TestIndividualUserProfiling()
         {
             //Wait 60 times 1 seconds each
             individualProfiler = new IndividualUserProfiler(
-                new HttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
+                new AuthorizedHttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
             {
                 ResponseWaitNumAttempts = 60,
                 ResponseWaitTime = TimeSpan.FromSeconds(1)
@@ -34,7 +35,7 @@ namespace bBridgeAPISDK.Test
         }
 
         [Fact]
-        public async void TestCanRequestCompleteUserProfileAndReceiveResultsInCallback()
+        public async Task TestCanRequestCompleteUserProfileAndReceiveResultsInCallback()
         {
             var responseReceived = new AutoResetEvent(false);
             var mockResponseListener = new Mock<IResponseListener<IndividualUserProfiling>>();

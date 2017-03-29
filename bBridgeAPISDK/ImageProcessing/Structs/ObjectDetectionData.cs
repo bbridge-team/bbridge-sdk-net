@@ -12,26 +12,27 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
         /// Create imput structure for Image Object Detection
         /// </summary>
         /// <param name="imageUri">Uri of the image to detect from</param>
-        /// <param name="treshold">Object detection treshold 0.01 - 1 </param>
-        public ObjectDetectionData(string imageUri, double treshold)
+        /// <param name="threshold">Object detection threshold 0 - 1 </param>
+        public ObjectDetectionData(string imageUri, double threshold)
         {
             if (!Uri.IsWellFormedUriString(imageUri, UriKind.Absolute))
             {
                 throw new ArgumentException("Image uri is not in a valid format");
             }
 
-            if (treshold < 0.1 || treshold > 1)
+			if (threshold < 0 || threshold > 1)
             {
                 throw new ArgumentException("Image detection treshold must be with the range 0.01 - 1");
             }
 
             ImageUri = imageUri;
-            DetectionTreshold = treshold;
+			DetectionTreshold = threshold;
         }
 
         #endregion
 
         #region Properties
+
         /// <summary>
         /// URL of the image
         /// </summary>

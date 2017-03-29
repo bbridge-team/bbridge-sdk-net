@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Text;
+using System.Net.Http;
+using Newtonsoft.Json;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
 using bBridgeAPISDK.Common.Authorization.Structs;
 using bBridgeAPISDK.Common.Interfaces;
+
 
 namespace bBridgeAPISDK.Common.Authorization
 {
@@ -9,9 +13,8 @@ namespace bBridgeAPISDK.Common.Authorization
     {
         #region Fields
 
-        private readonly IAsyncHttpRequester requester;
         private string token;
-        private string urlSuffix = "auth";
+		private string authUrl;
 
         #endregion
 
@@ -22,12 +25,11 @@ namespace bBridgeAPISDK.Common.Authorization
         /// </summary> 
         /// <param name="username">Name of bBridge API user</param>
         /// <param name="password">Password of bBridge API user</param>
-        public LazyCredentialsAuthorizer(string username, string password, string authBaseUri)
+        public LazyCredentialsAuthorizer(string username, string password, string authUrl)
         {
             UserName = username;
             Password = password;
-
-            requester = new HttpRequester(authBaseUri);
+			this.authUrl = authUrl;
         }
 
         #endregion
@@ -53,12 +55,15 @@ namespace bBridgeAPISDK.Common.Authorization
             {
                 if (string.IsNullOrEmpty(token))
                 {
-                    token = requester.RequestAsync<AuthorizationToken>(urlSuffix,
-                        new Credentials
-                        {
-                            User = UserName,
-                            Password = Password
-                        }).Result.Token;
+					using(var httpClient = new HttpClient())
+					{
+						token = JsonConvert.DeserializeObject<AuthorizationToken>(
+							httpClient.PostAsync(authUrl,
+								new StringContent(JsonConvert.SerializeObject(
+									new Credentials { User = UserName, Password = Password}).ToString(), 
+						        Encoding.UTF8, "application/json")).
+							Result.Content.ReadAsStringAsync().Result).Token;
+					}
                 }
 
                 return token;

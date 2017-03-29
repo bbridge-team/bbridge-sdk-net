@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace bBridgeAPISDK.Profiling.Individual.Structs
+namespace bBridgeAPISDK.UserProfiling.Individual.Structs
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class UserGeneratedContent
@@ -12,16 +12,16 @@ namespace bBridgeAPISDK.Profiling.Individual.Structs
         /// <summary>
         /// Creates the structure with the specified texsts and image urls 
         /// </summary>
-        /// <param name="texsts">User texsts from social media</param>
+        /// <param name="texts">User texsts from social media</param>
         /// <param name="imageURLs">URLs of the images from user's profile</param>
-        public UserGeneratedContent(IEnumerable<string> texsts, IEnumerable<string> imageURLs)
+        public UserGeneratedContent(IEnumerable<string> texts, IEnumerable<string> imageURLs)
         {
-            if (texsts == null && imageURLs == null)
+			if (texts == null && imageURLs == null)
             {
                 throw new ArgumentException("Both arguments can not be null");
             }
 
-            Texsts = new List<string>(texsts);
+			Texsts = new List<string>(texts);
             ImageURLs = imageURLs;
         }
 
