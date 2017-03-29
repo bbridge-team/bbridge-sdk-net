@@ -9,12 +9,8 @@ namespace bBridgeAPISDK.NLP
     /// <summary>
     /// NLP Processing API capabilities
     /// </summary>
-    public class NLProcessor : APIFeature
+    public class NLProcessor : APIRequester
     {
-        private const string posTagProcessingSuffix = "nlp/pos?";
-        private const string sentimentAnalysisSuffix = "nlp/sentiment?";
-        private const string nerProcessingSuffix = "nlp/ner?";
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -28,19 +24,14 @@ namespace bBridgeAPISDK.NLP
         /// </summary>
         /// <param name="ugc">User generated text data</param>
         /// <param name="language">Language of the text</param>
-        /// <param name="responseListener">Request response listener (via callback)</param>
         /// <returns></returns>
-        public async Task<string> RequestPartOfSpeechDetection(
+        public async Task<PartOfSpeechTags> DetectPartsOfSpeech(
             NLPUserGeneratedContent ugc,
-            Language language,
-            IResponseListener<PartOfSpeechTags> responseListener)
+            Language language)
         {
-            var requestID = (await obtainRequestID(ugc, posTagProcessingSuffix + 
-                (language == Language.English ? "lang=en" : "lang=zn"))).Id;
-
-            RequestAsyncAndWaitForResponseInCallback(requestID, responseListener);
-
-            return requestID;
+            return await ReceiveResponseAsync<PartOfSpeechTags>(
+                (await RequestAsync(ugc, bBridgeAPIURLSuffixes.PosTagProcessingSuffix +
+                    (language == Language.English ? "lang=en" : "lang=zn"))).Id);
         }
 
         /// <summary>
@@ -48,18 +39,13 @@ namespace bBridgeAPISDK.NLP
         /// </summary>
         /// <param name="ugc">User generated text data</param>
         /// <param name="language">Language of the text</param>
-        /// <param name="responseListener">Request response listener (via callback)</param>
-        public async Task<string> RequestSentimentAnalysis(
+        public async Task<Sentiments> DetectSentiment(
             NLPUserGeneratedContent ugc,
-            Language language,
-            IResponseListener<Sentiments> responseListener)
+            Language language)
         {
-            var requestID = (await obtainRequestID(ugc, sentimentAnalysisSuffix +
-                (language == Language.English ? "lang=en" : "lang=zn"))).Id;
-
-            RequestAsyncAndWaitForResponseInCallback(requestID, responseListener);
-
-            return requestID;
+            return await ReceiveResponseAsync<Sentiments>(
+                (await RequestAsync(ugc, bBridgeAPIURLSuffixes.SentimentAnalysisSuffix +
+                    (language == Language.English ? "lang=en" : "lang=zn"))).Id);
         }
 
         /// <summary>
@@ -67,18 +53,13 @@ namespace bBridgeAPISDK.NLP
         /// </summary>
         /// <param name="ugc">User generated text data</param>
         /// <param name="language">Language of the text</param>
-        /// <param name="responseListener">Request response listener (via callback)</param>
-        public async Task<string> RequestNERRecognition(
+        public async Task<NamedEntities> RecognizeNamedEntities(
            NLPUserGeneratedContent ugc,
-           Language language,
-           IResponseListener<NamedEntities> responseListener)
+           Language language)
         {
-            var requestID = (await obtainRequestID(ugc, nerProcessingSuffix +
-                (language == Language.English ? "lang=en" : "lang=zn"))).Id;
-
-            RequestAsyncAndWaitForResponseInCallback(requestID, responseListener);
-
-            return requestID;
+            return await ReceiveResponseAsync<NamedEntities>(
+                (await RequestAsync(ugc, bBridgeAPIURLSuffixes.NerProcessingSuffix +
+                    (language == Language.English ? "lang=en" : "lang=zn"))).Id);
         }
     }
 }

@@ -8,11 +8,8 @@ namespace bBridgeAPISDK.ImageProcessing
     /// <summary>
     /// Image processing API capabilities
     /// </summary>
-    public class ImageProcessor : APIFeature
+    public class ImageProcessor : APIRequester
     {
-        private const string objectDetectionSuffix = "image/objects";
-        private const string conceptDetectionSuffix = "image/concepts";
-
         /// <summary>
         /// Constructor 
         /// </summary>
@@ -25,33 +22,23 @@ namespace bBridgeAPISDK.ImageProcessing
         /// Performs Object detection API request
         /// </summary>
         /// <param name="imagesData">Image to detect objects from</param>
-        /// <param name="responseListener">Request response listener (via callback)</param>
         /// <returns></returns>
-        public async Task<string> RequestImageObjectDetection(
-            ObjectDetectionData imagesData,
-            IResponseListener<ImageObjects> responseListener)
+        public async Task<ImageObjects> DetectImageObjects(
+            ObjectDetectionData imagesData)
         {
-            var requestID = (await obtainRequestID(imagesData, objectDetectionSuffix)).Id;
-
-            RequestAsyncAndWaitForResponseInCallback(requestID, responseListener);
-
-            return requestID;
+            return await ReceiveResponseAsync<ImageObjects>(
+                (await RequestAsync(imagesData, bBridgeAPIURLSuffixes.ObjectDetectionSuffix)).Id);
         }
         /// <summary>
         /// Performs Image concept detection API request
         /// </summary>
         /// <param name="imagesData">Images to detect concepts from</param>
-        /// <param name="responseListener">Request response listener (via callback)</param>
         /// <returns></returns>
-        public async Task<string> RequestImageConceptDetection(
-            ConceptDetectionData imagesData,
-            IResponseListener<ImageConcepts> responseListener)
+        public async Task<ImageConcepts> DetectImageConcepts(
+            ConceptDetectionData imagesData)
         {
-            var requestID = (await obtainRequestID(imagesData, conceptDetectionSuffix)).Id;
-
-            RequestAsyncAndWaitForResponseInCallback(requestID, responseListener);
-
-            return requestID;
+            return await ReceiveResponseAsync<ImageConcepts>(
+                (await RequestAsync(imagesData, bBridgeAPIURLSuffixes.ConceptDetectionSuffix)).Id);
         }
     }
 }

@@ -121,12 +121,15 @@
     <value>http://bbridgeapi.cloudapp.net/v1/</value>
   </data>
   <data name="bBridgeAPIPassword" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="bBridgeAPIUserName" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="JWTTokenRegex" xml:space="preserve">
     <value>^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$</value>
+  </data>
+  <data name="bBridgeAPIAuthUrlSuffix" xml:space="preserve">
+    <value>auth</value>
   </data>
 </root>

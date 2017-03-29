@@ -1,3 +1,4 @@
+using System.IO;
 using System.Text.RegularExpressions;
 using bBridgeAPISDK.Common.Authorization;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
@@ -13,7 +14,8 @@ namespace bBridgeAPISDK.Test
             IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
                 TestResources.bBridgeAPIUserName,
                 TestResources.bBridgeAPIPassword,
-                TestResources.bBridgeAPIBaseURI);
+                Path.Combine(TestResources.bBridgeAPIBaseURI,
+                TestResources.bBridgeAPIAuthUrlSuffix));
 
             Assert.Equal(userPasswordAuthorizer.Token.Length, 186);
             Assert.True(Regex.IsMatch(userPasswordAuthorizer.Token, TestResources.JWTTokenRegex));

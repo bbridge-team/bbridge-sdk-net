@@ -1,10 +1,8 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 using System.Net.Http;
 using Newtonsoft.Json;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
 using bBridgeAPISDK.Common.Authorization.Structs;
-using bBridgeAPISDK.Common.Interfaces;
 
 
 namespace bBridgeAPISDK.Common.Authorization
@@ -14,7 +12,7 @@ namespace bBridgeAPISDK.Common.Authorization
         #region Fields
 
         private string token;
-		private string authUrl;
+	    readonly string authUrl;
 
         #endregion
 
@@ -25,6 +23,7 @@ namespace bBridgeAPISDK.Common.Authorization
         /// </summary> 
         /// <param name="username">Name of bBridge API user</param>
         /// <param name="password">Password of bBridge API user</param>
+        /// <param name="authUrl">bBridge API authentication request URL</param>
         public LazyCredentialsAuthorizer(string username, string password, string authUrl)
         {
             UserName = username;
@@ -60,7 +59,7 @@ namespace bBridgeAPISDK.Common.Authorization
 						token = JsonConvert.DeserializeObject<AuthorizationToken>(
 							httpClient.PostAsync(authUrl,
 								new StringContent(JsonConvert.SerializeObject(
-									new Credentials { User = UserName, Password = Password}).ToString(), 
+									new Credentials { User = UserName, Password = Password}), 
 						        Encoding.UTF8, "application/json")).
 							Result.Content.ReadAsStringAsync().Result).Token;
 					}

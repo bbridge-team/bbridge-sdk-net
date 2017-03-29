@@ -1,19 +1,16 @@
-﻿using System;
-using System.Threading.Tasks;
-using bBridgeAPISDK.Common.Interfaces;
+﻿using bBridgeAPISDK.Common.Interfaces;
 using bBridgeAPISDK.Common.Structs;
+using System;
+using System.Threading.Tasks;
 
 namespace bBridgeAPISDK.Common
 {
     /// <summary>
     /// Base class for all API features
     /// </summary>
-    public abstract class APIFeature
+    public class APIRequester
     {
         #region Fields
-        ///
-        protected const string apiResponseSuffix = "response?id=";
-
         private const int responseWaitTimeMilliseconds = 500;
         private const int responseWaitNumAttempts = 10;
 
@@ -27,7 +24,7 @@ namespace bBridgeAPISDK.Common
         /// Constructor for basic class
         /// </summary>
         /// <param name="requester">Http requester descendant</param>
-        protected APIFeature(IAsyncHttpRequester requester)
+        public APIRequester(IAsyncHttpRequester requester)
         {
             if (requester == null)
             {
@@ -62,18 +59,18 @@ namespace bBridgeAPISDK.Common
         /// <param name="ugc">data to be sent in POST request</param>
         /// <param name="urlSuffix">API feature URL suffix</param>
         /// <returns></returns>
-        protected async Task<RequestInfo> obtainRequestID(object ugc, string urlSuffix)
+        public async Task<RequestInfo> RequestAsync(object ugc, string urlSuffix)
         {
             return await requester.RequestAsync<RequestInfo>(urlSuffix, ugc);
         }
 
         /// <summary>
         /// Requests the response for the requestId to be called back via responseListener
+        /// Do not await the method if going to work with callbacks
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="requestId">Previously made request id</param>
-        /// <param name="responseListener">Response callback listener</param>
-        public async void RequestAsyncAndWaitForResponseInCallback<T>(string requestId, IResponseListener<T> responseListener) where T : class
+        public async Task<T> ReceiveResponseAsync<T>(string requestId) where T : class
         {
             var numAttempts = ResponseWaitNumAttempts;
             T response = null;
@@ -82,10 +79,21 @@ namespace bBridgeAPISDK.Common
             {
                 await Task.Delay(ResponseWaitTime);
                         
-                response = await requester.RequestAsync<T>(apiResponseSuffix + requestId);
+                response = await requester.RequestAsync<T>(bBridgeAPIURLSuffixes.ApiResponseSuffix + requestId);
             }
 
-            responseListener.ResponseReceived(requestId, response);
+            return response;
+        }
+
+        public void ReceiveResponseAsync<T>(string requestId,
+            IResponseListener<T> responseListener) where T : class
+        {
+            if (responseListener == null)
+            {
+                throw new ArgumentException("responseListener must be not null");
+            }
+
+            Task.Run(() => responseListener.ResponseReceived(requestId, ReceiveResponseAsync<T>(requestId).Result));
         }
 
         #endregion

@@ -7,15 +7,15 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
     public class ObjectDetectionData
     {
         #region Constructors
-        
+
         /// <summary>
         /// Create imput structure for Image Object Detection
         /// </summary>
-        /// <param name="imageUri">Uri of the image to detect from</param>
+        /// <param name="imageURL">Url of the image to detect from</param>
         /// <param name="threshold">Object detection threshold 0 - 1 </param>
-        public ObjectDetectionData(string imageUri, double threshold)
+        public ObjectDetectionData(string imageURL, double threshold)
         {
-            if (!Uri.IsWellFormedUriString(imageUri, UriKind.Absolute))
+            if (!Uri.IsWellFormedUriString(imageURL, UriKind.Absolute))
             {
                 throw new ArgumentException("Image uri is not in a valid format");
             }
@@ -25,7 +25,7 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
                 throw new ArgumentException("Image detection treshold must be with the range 0.01 - 1");
             }
 
-            ImageUri = imageUri;
+            ImageURL = imageURL;
 			DetectionTreshold = threshold;
         }
 
@@ -37,7 +37,7 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
         /// URL of the image
         /// </summary>
         [JsonProperty(PropertyName = "url")]
-        public string ImageUri { get; set; }
+        public string ImageURL { get; set; }
         /// <summary>
         /// Treshold to cut image detection results that confidence is lower than the treshold
         /// </summary>

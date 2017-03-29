@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
+using System.IO;
 using System.Threading.Tasks;
 using bBridgeAPISDK.Common;
 using bBridgeAPISDK.Common.Authorization;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
 using bBridgeAPISDK.Common.Enums;
-using bBridgeAPISDK.Common.Interfaces;
 using bBridgeAPISDK.NLP;
 using bBridgeAPISDK.NLP.Structs;
-using Moq;
 using Xunit;
 
 namespace bBridgeAPISDK.Test
@@ -19,7 +17,8 @@ namespace bBridgeAPISDK.Test
 		readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
 			TestResources.bBridgeAPIUserName,
 			TestResources.bBridgeAPIPassword,
-			TestResources.bBridgeAPIBaseURI);
+            Path.Combine(TestResources.bBridgeAPIBaseURI,
+                TestResources.bBridgeAPIAuthUrlSuffix));
 
 		private readonly NLProcessor nlpProcessor;
 
@@ -37,110 +36,51 @@ namespace bBridgeAPISDK.Test
         [Fact]
         public async Task TestCanRequestPOSDetectionAndReceiveResultsInCallback()
         {
-            var responseReceived = new AutoResetEvent(false);
-            var mockResponseListener = new Mock<IResponseListener<PartOfSpeechTags>>();
-            mockResponseListener.Setup(
-                m => m.ResponseReceived(
-                    It.IsNotNull<string>(),
-                    It.IsNotNull<PartOfSpeechTags>())).
-                    Callback<string, PartOfSpeechTags>((id, tags) =>
-                    {
-                        //Signaling that the result was called back
-                        responseReceived.Set();
-
-                        //Check if all attributes are not empty and not null
-                        Assert.False(string.IsNullOrEmpty(id));
-                        Assert.Equal(tags.PartOfSpeechTagLists.Count, 2);
-
-                        foreach (var tagList in tags.PartOfSpeechTagLists)
-                        {
-                            foreach (var tag in tagList)
-                            {
-                                Assert.False(string.IsNullOrEmpty(tag.Text));
-                                Assert.False(string.IsNullOrEmpty(tag.Type));
-                            }
-                        }
-                    }).Verifiable();
-
-            await nlpProcessor.RequestPartOfSpeechDetection(
+            var result = await nlpProcessor.DetectPartsOfSpeech(
                 new NLPUserGeneratedContent(new List<string> { "Putin is Trump's friend", "The weather is good :)" }),
-                Language.English,
-                mockResponseListener.Object);
+                Language.English);
 
-            //Waiting for response for 1 minute
-            Assert.True(responseReceived.WaitOne(TimeSpan.FromMinutes(1)));
+            foreach (var tagList in result.PartOfSpeechTagLists)
+            {
+                foreach (var tag in tagList)
+                {
+                    Assert.False(string.IsNullOrEmpty(tag.Text));
+                    Assert.False(string.IsNullOrEmpty(tag.Type));
+                }
+            }
         }
 
 
         [Fact]
         public async Task TestCanRequestSentimentDetectionAndReceiveResultsInCallback()
         {
-            var responseReceived = new AutoResetEvent(false);
-            var mockResponseListener = new Mock<IResponseListener<Sentiments>>();
-            mockResponseListener.Setup(
-                m => m.ResponseReceived(
-                    It.IsNotNull<string>(),
-                    It.IsNotNull<Sentiments>())).
-                    Callback<string, Sentiments>((id, sentiments) =>
-                    {
-                        //Signaling that the result was called back
-                        responseReceived.Set();
-
-                        //Check if all attributes are not empty and not null
-                        Assert.False(string.IsNullOrEmpty(id));
-                        Assert.Equal(sentiments.SentimentsList.Count, 2);
-
-                        foreach (var sentiment in sentiments.SentimentsList)
-                        {
-                            Assert.InRange(sentiment, 0, 1);
-                        }
-                    }).Verifiable();
-
-            await nlpProcessor.RequestSentimentAnalysis(
+            var result = await nlpProcessor.DetectSentiment(
                 new NLPUserGeneratedContent(new List<string> { "Putin is Trump's friend", "The weather is good :)" }),
-                Language.English,
-                mockResponseListener.Object);
-
-            //Waiting for response for 1 minute
-            Assert.True(responseReceived.WaitOne(TimeSpan.FromMinutes(1)));
+                Language.English);
+            
+            foreach (var sentiment in result.SentimentsList)
+            {
+                Assert.InRange(sentiment, 0, 1);
+            }
         }
 
         [Fact]
         public async Task TestCanRequestNERDetectionAndReceiveResultsInCallback()
         {
-            var responseReceived = new AutoResetEvent(false);
-            var mockResponseListener = new Mock<IResponseListener<NamedEntities>>();
-            mockResponseListener.Setup(
-                m => m.ResponseReceived(
-                    It.IsNotNull<string>(),
-                    It.IsNotNull<NamedEntities>())).
-                    Callback<string, NamedEntities>((id, ners) =>
-                    {
-                        //Signaling that the result was called back
-                        responseReceived.Set();
+            var result = await nlpProcessor.RecognizeNamedEntities(
+                new NLPUserGeneratedContent(new List<string>
+                    { "Putin is Trump's friend", "The weather is good :)" }),
+                Language.English);
 
-                        //Check if all attributes are not empty and not null
-                        Assert.False(string.IsNullOrEmpty(id));
-                        Assert.Equal(ners.NamedEntityLists.Count, 2);
-
-                        foreach (var nerList in ners.NamedEntityLists)
-                        {
-                            foreach (var ner in nerList)
-                            {
-                                Assert.InRange(ner.Count, 1, int.MaxValue);
-                                Assert.False(string.IsNullOrEmpty(ner.Text));
-                                Assert.False(string.IsNullOrEmpty(ner.Type));
-                            }
-                        }
-                    }).Verifiable();
-
-            await nlpProcessor.RequestNERRecognition(
-                new NLPUserGeneratedContent(new List<string> { "Putin is Trump's friend", "The weather is good :)" }),
-                Language.English,
-                mockResponseListener.Object);
-
-            //Waiting for response for 1 minute
-            Assert.True(responseReceived.WaitOne(TimeSpan.FromMinutes(1)));
+            foreach (var nerList in result.NamedEntityLists)
+            {
+                foreach (var ner in nerList)
+                {
+                    Assert.InRange(ner.Count, 1, int.MaxValue);
+                    Assert.False(string.IsNullOrEmpty(ner.Text));
+                    Assert.False(string.IsNullOrEmpty(ner.Type));
+                }
+            }
         }
 
     }
