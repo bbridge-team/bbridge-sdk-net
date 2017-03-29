@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using bBridgeAPISDK.Common.Authorization;
@@ -12,8 +13,12 @@ namespace bBridgeAPISDK.Test
         public void TestCanReceiveAuthorizationTokenForUserNameAndPassword()
         {
             IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-                TestResources.bBridgeAPIUserName,
-                TestResources.bBridgeAPIPassword,
+				string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
+					Environment.GetEnvironmentVariable("bBridgeAPIUserName") : 
+					TestResources.bBridgeAPIUserName,
+				string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
+					Environment.GetEnvironmentVariable("bBridgeAPIPassword") :
+					TestResources.bBridgeAPIPassword,
                 Path.Combine(TestResources.bBridgeAPIBaseURI,
                 TestResources.bBridgeAPIAuthUrlSuffix));
 

@@ -14,8 +14,12 @@ namespace bBridgeAPISDK.Test
     public class TestImageProcessing
     {
 		readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-				TestResources.bBridgeAPIUserName,
-				TestResources.bBridgeAPIPassword,
+				string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
+					Environment.GetEnvironmentVariable("bBridgeAPIUserName") :
+					TestResources.bBridgeAPIUserName,
+				string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
+					Environment.GetEnvironmentVariable("bBridgeAPIPassword") :
+					TestResources.bBridgeAPIPassword,
                 Path.Combine(TestResources.bBridgeAPIBaseURI,
                 TestResources.bBridgeAPIAuthUrlSuffix));
 
