@@ -4,7 +4,7 @@ sudo: required
 mono: none
 dotnet: 1.0.1
 env:
-- bBridgeAPIUserName=farseev
-- bBridgeAPIUserName=gqr27812jr
+- bBridgeAPIUserName=unknown
+- bBridgeAPIPassword=unknown
 script:
   - ./build.sh --quiet verify
