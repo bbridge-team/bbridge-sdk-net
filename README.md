@@ -6,5 +6,5 @@ bBridge API SDK is a .Net (.Net Core 1.0.1 and .Net Framework 4.5.2) library for
 - Set environment variables BBRIDGE_API_USER_NAME and BBRIDGE_API_PASSWORD to bBridge API user name and password, respectively.
 - run dotnet test in bBridgeAPISDK.Test directory
 
-## Documentation
+# Documentation
 More information can be found on the [bBridge developer site](http://bbridge.cloudapp.net/developer).
