@@ -10,9 +10,9 @@ namespace bBridgeAPISDK.UserProfiling.Individual.Structs
         #region Constructors
 
         /// <summary>
-        /// Creates the structure with the specified texsts and image urls 
+        /// Creates the structure with the specified texts and image urls 
         /// </summary>
-        /// <param name="texts">User texsts from social media</param>
+        /// <param name="texts">User texts from social media</param>
         /// <param name="imageURLs">URLs of the images from user's profile</param>
         public UserGeneratedContent(IEnumerable<string> texts, IEnumerable<string> imageURLs)
         {
@@ -21,17 +21,22 @@ namespace bBridgeAPISDK.UserProfiling.Individual.Structs
                 throw new ArgumentException("Both arguments can not be null");
             }
 
-			Texsts = new List<string>(texts);
+			Texts = new List<string>(texts);
             ImageURLs = imageURLs;
         }
 
         #endregion
 
         #region Properties
-
+        /// <summary>
+        /// User-generated texts
+        /// </summary>
         [JsonProperty(PropertyName = "text")]
-        public IEnumerable<string> Texsts { get; set; }
+        public IEnumerable<string> Texts { get; set; }
 
+        /// <summary>
+        /// User-generated image URLs
+        /// </summary>
         [JsonProperty(PropertyName = "image_urls")]
         public IEnumerable<string> ImageURLs { get; set; }
 

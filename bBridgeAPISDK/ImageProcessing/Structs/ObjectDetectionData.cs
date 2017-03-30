@@ -9,7 +9,7 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
         #region Constructors
 
         /// <summary>
-        /// Create imput structure for Image Object Detection
+        /// Create input structure for Image Object Detection
         /// </summary>
         /// <param name="imageURL">Url of the image to detect from</param>
         /// <param name="threshold">Object detection threshold 0 - 1 </param>
@@ -22,11 +22,11 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
 
 			if (threshold < 0 || threshold > 1)
             {
-                throw new ArgumentException("Image detection treshold must be with the range 0.01 - 1");
+                throw new ArgumentException("Image detection threshold must be with the range 0.01 - 1");
             }
 
             ImageURL = imageURL;
-			DetectionTreshold = threshold;
+			DetectionThreshold = threshold;
         }
 
         #endregion
@@ -38,11 +38,12 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
         /// </summary>
         [JsonProperty(PropertyName = "url")]
         public string ImageURL { get; set; }
+
         /// <summary>
-        /// Treshold to cut image detection results that confidence is lower than the treshold
+        /// Threshold to cut image detection results that confidence is lower than the treshold
         /// </summary>
         [JsonProperty(PropertyName = "threshold")]
-        public double DetectionTreshold { get; set; }
+        public double DetectionThreshold { get; set; }
 
         #endregion
     }

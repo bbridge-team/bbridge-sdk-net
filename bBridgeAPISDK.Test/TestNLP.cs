@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using bBridgeAPISDK.Common;
-using bBridgeAPISDK.Common.Authorization;
-using bBridgeAPISDK.Common.Authorization.Interfaces;
 using bBridgeAPISDK.Common.Enums;
 using bBridgeAPISDK.NLP;
 using bBridgeAPISDK.NLP.Structs;
@@ -12,18 +9,8 @@ using Xunit;
 
 namespace bBridgeAPISDK.Test
 {
-    public class TestNLP
+    public class TestNLP: APIAuthorizedTest
     {
-		readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-			string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
-					Environment.GetEnvironmentVariable("BBRIDGE_API_USER_NAME") :
-					TestResources.bBridgeAPIUserName,
-			string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
-					Environment.GetEnvironmentVariable("BBRIDGE_API_PASSWORD") :
-					TestResources.bBridgeAPIPassword,
-            Path.Combine(TestResources.bBridgeAPIBaseURI,
-                TestResources.bBridgeAPIAuthUrlSuffix));
-
 		private readonly NLProcessor nlpProcessor;
 
         public TestNLP()
@@ -38,7 +25,7 @@ namespace bBridgeAPISDK.Test
         }
 
         [Fact]
-        public async Task TestCanRequestPOSDetectionAndReceiveResultsInCallback()
+        public async Task TestCanRequestPOSDetectionAndReceiveResults()
         {
             var result = await nlpProcessor.DetectPartsOfSpeech(
                 new NLPUserGeneratedContent(new List<string> { "Putin is Trump's friend", "The weather is good :)" }),
@@ -56,7 +43,7 @@ namespace bBridgeAPISDK.Test
 
 
         [Fact]
-        public async Task TestCanRequestSentimentDetectionAndReceiveResultsInCallback()
+        public async Task TestCanRequestSentimentDetectionAndReceiveResults()
         {
             var result = await nlpProcessor.DetectSentiment(
                 new NLPUserGeneratedContent(new List<string> { "Putin is Trump's friend", "The weather is good :)" }),
@@ -69,7 +56,7 @@ namespace bBridgeAPISDK.Test
         }
 
         [Fact]
-        public async Task TestCanRequestNERDetectionAndReceiveResultsInCallback()
+        public async Task TestCanRequestNERDetectionAndReceiveResults()
         {
             var result = await nlpProcessor.RecognizeNamedEntities(
                 new NLPUserGeneratedContent(new List<string>

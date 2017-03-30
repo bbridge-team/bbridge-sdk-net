@@ -1,30 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using bBridgeAPISDK.Common;
-using bBridgeAPISDK.Common.Authorization;
-using bBridgeAPISDK.Common.Authorization.Interfaces;
 using bBridgeAPISDK.ImageProcessing;
 using bBridgeAPISDK.ImageProcessing.Structs;
 using Xunit;
 
 namespace bBridgeAPISDK.Test
 {
-    public class TestImageProcessing
+    public class TestImageProcessing: APIAuthorizedTest
     {
-		readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-				string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
-					Environment.GetEnvironmentVariable("BBRIDGE_API_USER_NAME") :
-					TestResources.bBridgeAPIUserName,
-				string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
-					Environment.GetEnvironmentVariable("BBRIDGE_API_PASSWORD") :
-					TestResources.bBridgeAPIPassword,
-                Path.Combine(TestResources.bBridgeAPIBaseURI,
-                TestResources.bBridgeAPIAuthUrlSuffix));
-
 		readonly ImageProcessor imageProcessor;
-
 
 		public TestImageProcessing()
         {
@@ -37,7 +23,7 @@ namespace bBridgeAPISDK.Test
         }
 
         [Fact]
-        public async Task TestCanRequestObjectDetectionAndReceiveResultsInCallback()
+        public async Task TestCanRequestObjectDetectionAndReceiveResults()
         {
             var result = await imageProcessor.DetectImageObjects(
                 new ObjectDetectionData("https://pbs.twimg.com/media/C6ij4CLUwAAxu9r.jpg", 0.5));
@@ -50,7 +36,7 @@ namespace bBridgeAPISDK.Test
         }
 
         [Fact]
-        public async Task TestCanRequestConceptDetectionAndReceiveResultsInCallback()
+        public async Task TestCanRequestConceptDetectionAndReceiveResults()
         {
             var result = await imageProcessor.DetectImageConcepts(
                 new ConceptDetectionData(

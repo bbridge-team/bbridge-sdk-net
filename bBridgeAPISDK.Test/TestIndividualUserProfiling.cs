@@ -1,30 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using bBridgeAPISDK.Common;
-using bBridgeAPISDK.Common.Authorization;
-using bBridgeAPISDK.Common.Authorization.Interfaces;
 using bBridgeAPISDK.UserProfiling.Individual;
 using bBridgeAPISDK.UserProfiling.Individual.Structs;
 using Xunit;
 
 namespace bBridgeAPISDK.Test
 {
-    public class TestIndividualUserProfiling
+    public class TestIndividualUserProfiling: APIAuthorizedTest
     {
-		readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-			string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
-					Environment.GetEnvironmentVariable("BBRIDGE_API_USER_NAME") :
-					TestResources.bBridgeAPIUserName,
-			string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
-					Environment.GetEnvironmentVariable("BBRIDGE_API_PASSWORD") :
-					TestResources.bBridgeAPIPassword,
-            Path.Combine(TestResources.bBridgeAPIBaseURI,
-                TestResources.bBridgeAPIAuthUrlSuffix));
-
 		readonly IndividualUserProfiler individualProfiler;
-
 
 		public TestIndividualUserProfiling()
         {
@@ -38,7 +24,7 @@ namespace bBridgeAPISDK.Test
         }
 
         [Fact]
-        public async Task TestCanRequestCompleteUserProfileAndReceiveResultsInCallback()
+        public async Task TestCanRequestCompleteUserProfileAndReceiveResults()
         {
             var result = await individualProfiler.PredictIndividualUserProfileTask(
                 new UserGeneratedContent(

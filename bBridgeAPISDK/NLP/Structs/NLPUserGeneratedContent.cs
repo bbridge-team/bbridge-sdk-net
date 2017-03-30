@@ -18,14 +18,14 @@ namespace bBridgeAPISDK.NLP.Structs
         {
             if (sentences == null)
             {
-                throw new ArgumentException("sentances can not be null");
+                throw new ArgumentException("Sentences can not be null");
             }
 
             Sentences = new List<string>(sentences);
         }
 
         /// <summary>
-        /// Sentances to be processed
+        /// Sentences to be processed
         /// </summary>
         [JsonProperty(PropertyName = "sentences")]
         public List<string> Sentences { get; set; }

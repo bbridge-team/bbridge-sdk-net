@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Net.Http;
 using Newtonsoft.Json;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
@@ -56,6 +57,8 @@ namespace bBridgeAPISDK.Common.Authorization
                 {
 					using(var httpClient = new HttpClient())
 					{
+                        httpClient.Timeout = TimeSpan.FromMinutes(1);
+
 						token = JsonConvert.DeserializeObject<AuthorizationToken>(
 							httpClient.PostAsync(authUrl,
 								new StringContent(JsonConvert.SerializeObject(

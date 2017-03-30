@@ -13,7 +13,7 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
 		#region Properties
 
 		/// <summary>
-		/// Error messahe if request went wrong. Null if request is succesfull
+		/// Error message if request went wrong. Null if request is succesfull
 		/// </summary>
 		[JsonProperty(PropertyName = "error", NullValueHandling = NullValueHandling.Ignore)]
 		public ErrorMessage Error { get; set; }
