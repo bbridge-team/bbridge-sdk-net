@@ -16,10 +16,10 @@ namespace bBridgeAPISDK.Test
     {
 		readonly IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
 			string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
-					Environment.GetEnvironmentVariable("bBridgeAPIUserName") :
+					Environment.GetEnvironmentVariable("BBRIDGE_API_USER_NAME") :
 					TestResources.bBridgeAPIUserName,
 			string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
-					Environment.GetEnvironmentVariable("bBridgeAPIPassword") :
+					Environment.GetEnvironmentVariable("BBRIDGE_API_PASSWORD") :
 					TestResources.bBridgeAPIPassword,
             Path.Combine(TestResources.bBridgeAPIBaseURI,
                 TestResources.bBridgeAPIAuthUrlSuffix));
