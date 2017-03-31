@@ -3,14 +3,30 @@ bBridge API SDK is a .Net (.Net Core 1.0.1 and .Net Framework 4.5.2) library for
 
 # Example
 ```cs
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using bBridgeAPISDK.Common;
+using bBridgeAPISDK.UserProfiling.Individual;
+using bBridgeAPISDK.UserProfiling.Individual.Structs;
+
 string authorizationURL = "http://bbridgeapi.cloudapp.net/v1/auth";
+string apiBaseURL = "http://bbridgeapi.cloudapp.net/v1/";
 
 IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
     "<MyAPIUserName>",
     "<MyAPIPassword>",
     authorizationURL);
 
-IndividualUserProfiling userProfile = await individualProfiler.PredictIndividualUserProfileTask(
+IndividualUserProfiler individualProfiler = new IndividualUserProfiler(
+    new AuthorizedHttpRequester(apiBaseURL, userPasswordAuthorizer))
+        {
+            ResponseWaitNumAttempts = 60,
+            ResponseWaitTime = TimeSpan.FromSeconds(1)
+        };
+        
+
+IndividualUserProfiling userProfilingResponse = await individualProfiler.PredictIndividualUserProfileTask(
     new UserGeneratedContent(
         new List<string> { "Hello friend!", "The weather is good :)" },
             new List<string>
@@ -30,12 +46,12 @@ IndividualUserProfiling userProfile = await individualProfiler.PredictIndividual
             });
             
 Console.WriteLine(
-    $"Gender: {result.Profile.Gender}," +
-    $"Age group: {result.Profile.AgeGroup}," +
-    $"Relationship Status: {result.Profile.RelationshipStatus}," +
-    $"Education: {result.Profile.EducationLevel}," +
-    $"Income: {result.Profile.IncomeLevel}," +
-    $"Occupation: {result.Profile.OccupationIndustry}");
+    $"Gender: {userProfilingResponse.Profile.Gender}," +
+    $"Age group: {userProfilingResponse.Profile.AgeGroup}," +
+    $"Relationship Status: {userProfilingResponse.Profile.RelationshipStatus}," +
+    $"Education: {userProfilingResponse.Profile.EducationLevel}," +
+    $"Income: {userProfilingResponse.Profile.IncomeLevel}," +
+    $"Occupation: {userProfilingResponse.Profile.OccupationIndustry}");
 ```
 
 # Testing
