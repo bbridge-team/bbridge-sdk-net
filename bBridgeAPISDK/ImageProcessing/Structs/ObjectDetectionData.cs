@@ -12,7 +12,7 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
         /// Create input structure for Image Object Detection
         /// </summary>
         /// <param name="imageURL">Url of the image to detect from</param>
-        /// <param name="threshold">Object detection threshold 0 - 1 </param>
+        /// <param name="threshold">Object detection threshold [0 - 1] </param>
         public ObjectDetectionData(string imageURL, double threshold)
         {
             if (!Uri.IsWellFormedUriString(imageURL, UriKind.Absolute))
@@ -22,7 +22,7 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
 
 			if (threshold < 0 || threshold > 1)
             {
-                throw new ArgumentException("Image detection threshold must be with the range 0.01 - 1");
+                throw new ArgumentException("Image detection threshold must be with the range [0 - 1]");
             }
 
             ImageURL = imageURL;

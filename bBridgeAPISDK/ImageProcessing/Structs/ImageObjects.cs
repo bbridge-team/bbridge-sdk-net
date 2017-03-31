@@ -65,9 +65,11 @@ namespace bBridgeAPISDK.ImageProcessing.Structs
 		/// </summary>
 		[JsonProperty(PropertyName = "w")]
 		public double Width { get; set; }
-
-		//Height of the detected object
-		[JsonProperty(PropertyName = "h")]
+        
+        /// <summary>
+        /// Height of the detected object
+        /// </summary>
+        [JsonProperty(PropertyName = "h")]
 		public double Height { get; set; }
 
 		#endregion
