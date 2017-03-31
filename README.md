@@ -3,14 +3,14 @@ bBridge API SDK is a .Net (.Net Core 1.0.1 and .Net Framework 4.5.2) library for
 
 # Example
 ```cs
-var authorizationURL = "http://bbridgeapi.cloudapp.net/v1/auth";
+string authorizationURL = "http://bbridgeapi.cloudapp.net/v1/auth";
 
 IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
     "<MyAPIUserName>",
     "<MyAPIPassword>",
     authorizationURL);
 
-UserGeneratedContent userProfile = await individualProfiler.PredictIndividualUserProfileTask(
+IndividualUserProfiling userProfile = await individualProfiler.PredictIndividualUserProfileTask(
     new UserGeneratedContent(
         new List<string> { "Hello friend!", "The weather is good :)" },
             new List<string>
