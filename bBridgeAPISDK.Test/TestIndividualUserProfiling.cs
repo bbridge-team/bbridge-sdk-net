@@ -1,49 +1,39 @@
-using bBridgeAPISDK.Authorization;
-using bBridgeAPISDK.Authorization.Interfaces;
-using bBridgeAPISDK.Utils;
 using System;
 using System.Collections.Generic;
-using System.Threading;
-using bBridgeAPISDK.Interfaces;
-using bBridgeAPISDK.Profiling.Individual;
-using bBridgeAPISDK.Profiling.Individual.Structs;
-using bBridgeAPISDK.Structs;
-using Moq;
+using System.Threading.Tasks;
+using bBridgeAPISDK.Common;
+using bBridgeAPISDK.UserProfiling.Individual;
+using bBridgeAPISDK.UserProfiling.Individual.Structs;
 using Xunit;
 
 namespace bBridgeAPISDK.Test
 {
-    public class TestIndividualUserProfiling
-    {   
-        [Fact]
-        public async void TestCanRequestCompleteUserProfileAndReceiveResultsInCallback()
+    public class TestIndividualUserProfiling: APIAuthorizedTest
+    {
+		readonly IndividualUserProfiler individualProfiler;
+
+		public TestIndividualUserProfiling()
         {
-            var responseReceived = new AutoResetEvent(false);
-            var mockResponseListener = new Mock<IResponseListener<Response<IndividualUserProfile>>>();
-            mockResponseListener.Setup(
-                m => m.ResponseReceived(
-                    It.IsAny<string>(),
-                    It.IsNotNull<Response<IndividualUserProfile>>())).
-                    Callback(() => responseReceived.Set()).Verifiable();
+            //Wait 60 times 1 seconds each
+            individualProfiler = new IndividualUserProfiler(
+                new AuthorizedHttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
+            {
+                ResponseWaitNumAttempts = 60,
+                ResponseWaitTime = TimeSpan.FromSeconds(1)
+            };
+        }
 
-            var baseUri = new Uri(Resources.bBridgeAPIBaseURI);
-
-            IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-                Resources.bBridgeAPIUserName,
-                Resources.bBridgeAPIPassword,
-                baseUri);
-
-            var individualProfiler = new IndividualUserProfiler(
-                new HttpRequester(baseUri, userPasswordAuthorizer));
-
-            await individualProfiler.RequestIndividuallUserProfiling(
+        [Fact]
+        public async Task TestCanRequestCompleteUserProfileAndReceiveResults()
+        {
+            var result = await individualProfiler.PredictIndividualUserProfileTask(
                 new UserGeneratedContent(
                     new List<string> { "Hello friend!", "The weather is good :)" },
-                    new List<Uri>
-                    {
-                        new Uri("https://pbs.twimg.com/media/C6ij4CLUwAAxu9r.jpg"),
-                        new Uri("https://pbs.twimg.com/media/C6jO3UiVoAQYc_8.jpg")
-                    }
+                        new List<string>
+                        {
+                            "https://pbs.twimg.com/media/C6ij4CLUwAAxu9r.jpg",
+                            "https://pbs.twimg.com/media/C6jO3UiVoAQYc_8.jpg"
+                        }
                     ),
                 new IndividualUserProfilingSettings {
                     AgeGroup = true,
@@ -52,11 +42,14 @@ namespace bBridgeAPISDK.Test
                     IncomeLevel = true,
                     OccupationIndustry = true,
                     RelationshipStatus = true
-                },
-                mockResponseListener.Object);
-
-
-            Assert.True(responseReceived.WaitOne(TimeSpan.FromSeconds(5)));
+                });
+            
+            Assert.False(string.IsNullOrEmpty(result.Profile.Gender));
+            Assert.False(string.IsNullOrEmpty(result.Profile.AgeGroup));
+            Assert.False(string.IsNullOrEmpty(result.Profile.EducationLevel));
+            Assert.False(string.IsNullOrEmpty(result.Profile.IncomeLevel));
+            Assert.False(string.IsNullOrEmpty(result.Profile.OccupationIndustry));
+            Assert.False(string.IsNullOrEmpty(result.Profile.RelationshipStatus));
         }
     }
 }
