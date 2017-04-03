@@ -1,4 +1,4 @@
-# bBridge API .Net SDK [![Build Status](https://travis-ci.org/bbridge-team/bbridge-sdk-net.svg?branch=master)](https://travis-ci.org/bbridge-team/bbridge-sdk-net)
+# bBridge API .Net SDK [![Build Status](https://travis-ci.org/bbridge-team/bbridge-sdk-net.svg?branch=master)](https://travis-ci.org/bbridge-team/bbridge-sdk-net) [![NuGet](https://img.shields.io/nuget/v/bBridgeAPISDK.svg?style=flat)](https://www.nuget.org/packages/bBridgeAPISDK/)
 
 bBridge API SDK is a .Net (.Net Core 1.0.1 and .Net Framework 4.5.2) library for making calls to [bBridge (NExT) API](http://bbridge.cloudapp.net/developer). The library enables users for making API calls from all .Net-enabled platforms.
 
