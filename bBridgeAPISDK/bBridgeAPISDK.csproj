@@ -9,6 +9,13 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Aleksandr Farseev</Authors>
+    <Description>bBridge API SDK is a .Net library for making calls to bBridge (NExT) API. The library enables users for making API calls from all .Net-enabled platforms.</Description>
+    <Copyright>NExT++ Research Center</Copyright>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageProjectUrl>api.nextcenter.org</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bbridge-team/bbridge-sdk-net</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
