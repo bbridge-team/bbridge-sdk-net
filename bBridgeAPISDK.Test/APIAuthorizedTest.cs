@@ -2,7 +2,6 @@
 using System.IO;
 using bBridgeAPISDK.Common.Authorization;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
-using bBridgeAPISDKNET.Test;
 
 namespace bBridgeAPISDK.Test
 {

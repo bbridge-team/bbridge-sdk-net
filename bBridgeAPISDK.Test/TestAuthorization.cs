@@ -1,5 +1,4 @@
 using System.Text.RegularExpressions;
-using bBridgeAPISDKNET.Test;
 using Xunit;
 
 namespace bBridgeAPISDK.Test

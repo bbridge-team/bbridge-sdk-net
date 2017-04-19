@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using bBridgeAPISDK.Common;
 using bBridgeAPISDK.ImageProcessing;
 using bBridgeAPISDK.ImageProcessing.Structs;
-using bBridgeAPISDKNET.Test;
 using Xunit;
 
 namespace bBridgeAPISDK.Test

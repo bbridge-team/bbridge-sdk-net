@@ -5,7 +5,6 @@ using bBridgeAPISDK.Common;
 using bBridgeAPISDK.Common.Enums;
 using bBridgeAPISDK.NLP;
 using bBridgeAPISDK.NLP.Structs;
-using bBridgeAPISDKNET.Test;
 using Xunit;
 
 namespace bBridgeAPISDK.Test
