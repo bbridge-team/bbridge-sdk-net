@@ -3,12 +3,22 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>bBridgeAPISDK</AssemblyName>
-    <PackageId>bBridgeAPISDK</PackageId>
+    <PackageId>NetCore.NUS.bBridge.bBridgeAPISDK</PackageId>
     <NetStandardImplicitPackageVersion>1.6.0</NetStandardImplicitPackageVersion>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Aleksandr Farseev</Authors>
+    <Description>bBridge API SDK is a .Net library for making calls to bBridge (NExT) API. The library enables users for making API calls from all .Net-enabled platforms.</Description>
+    <Copyright>Copyright NExT Center 2017</Copyright>
+    <PackageIconUrl>http://bbridge.cloudapp.net/favicon.ico</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/bbridge-team</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/bbridge-team/bbridge-sdk-net</RepositoryUrl>
+    <PackageLicenseUrl>http://opensource.org/licenses/Apache-2.0</PackageLicenseUrl>
+    <PackageTags>.Net Core bBridge API SDK</PackageTags>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

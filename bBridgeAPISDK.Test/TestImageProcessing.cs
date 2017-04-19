@@ -26,7 +26,7 @@ namespace bBridgeAPISDK.Test
         public async Task TestCanRequestObjectDetectionAndReceiveResults()
         {
             var result = await imageProcessor.DetectImageObjects(
-                new ObjectDetectionData("https://pbs.twimg.com/media/C6ij4CLUwAAxu9r.jpg", 0.5));
+                new ObjectDetectionData("https://raw.githubusercontent.com/bbridge-team/bbridge-sdk-net/master/cats.jpg", 0.5));
 
             foreach (var obj in result.Objects)
             {
@@ -42,8 +42,8 @@ namespace bBridgeAPISDK.Test
                 new ConceptDetectionData(
                     new List<string>
                         {
-                            "https://pbs.twimg.com/media/C6ij4CLUwAAxu9r.jpg",
-                            "https://pbs.twimg.com/media/C6jO3UiVoAQYc_8.jpg"
+                            "https://raw.githubusercontent.com/bbridge-team/bbridge-sdk-net/master/cats.jpg",
+                            "https://raw.githubusercontent.com/bbridge-team/bbridge-sdk-net/master/cats.jpg"
                         }, 5));
 
             foreach (var distribution in result.ImageConceptDistributions)
