@@ -7,5 +7,5 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("NExT++ Research Center")]
-[assembly: AssemblyProduct("bBridgeAPISDK")]
+[assembly: AssemblyProduct("bBridge API SDK .Net Core")]
 [assembly: AssemblyTrademark("")]

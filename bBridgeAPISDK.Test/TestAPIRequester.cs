@@ -3,6 +3,7 @@ using System.Threading;
 using bBridgeAPISDK.Common;
 using bBridgeAPISDK.Common.Interfaces;
 using bBridgeAPISDK.ImageProcessing.Structs;
+using bBridgeAPISDKNET.Test;
 using Moq;
 using Xunit;
 

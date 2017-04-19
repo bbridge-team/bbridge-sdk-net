@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using bBridgeAPISDK.Common;
 using bBridgeAPISDK.UserProfiling.Individual;
 using bBridgeAPISDK.UserProfiling.Individual.Structs;
+using bBridgeAPISDKNET.Test;
 using Xunit;
 
 namespace bBridgeAPISDK.Test
