@@ -46,7 +46,9 @@ namespace bBridgeAPISDK.Common
         /// </summary>
         public TimeSpan ResponseWaitTime { get; set; }
 
-        //Number of re-requests
+        /// <summary>
+        ///Number of re-requests
+        /// </summary>
         public int ResponseWaitNumAttempts { get; set; }
 
         #endregion

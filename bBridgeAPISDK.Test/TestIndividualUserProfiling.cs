@@ -16,7 +16,7 @@ namespace bBridgeAPISDK.Test
         {
             //Wait 60 times 1 seconds each
             individualProfiler = new IndividualUserProfiler(
-                new AuthorizedHttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
+                new AuthorizedHttpRequester(TestResources.bBridgeAPIBaseURI, TimeSpan.FromMinutes(10), userPasswordAuthorizer))
             {
                 ResponseWaitNumAttempts = 60,
                 ResponseWaitTime = TimeSpan.FromSeconds(1)

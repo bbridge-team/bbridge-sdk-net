@@ -8,7 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace bBridgeAPISDKNET.Test {
+namespace bBridgeAPISDK.Test
+{
     using System;
     
     

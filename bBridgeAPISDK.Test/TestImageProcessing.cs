@@ -15,10 +15,10 @@ namespace bBridgeAPISDK.Test
 		public TestImageProcessing()
         {
             //Wait 60 times 1 seconds each
-            imageProcessor = new ImageProcessor(new AuthorizedHttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
+            imageProcessor = new ImageProcessor(new AuthorizedHttpRequester(TestResources.bBridgeAPIBaseURI, TimeSpan.FromMinutes(10),  userPasswordAuthorizer))
             {
                 ResponseWaitNumAttempts = 60,
-                ResponseWaitTime = TimeSpan.FromSeconds(1)
+                ResponseWaitTime = TimeSpan.FromSeconds(3)
             };
         }
 

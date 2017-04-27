@@ -35,10 +35,10 @@ namespace bBridgeAPISDK.Test
                     }).Verifiable();
 
             //Wait 60 times 1 seconds each
-            var apiRequester = new APIRequester(new AuthorizedHttpRequester(TestResources.bBridgeAPIBaseURI, userPasswordAuthorizer))
+            var apiRequester = new APIRequester(new AuthorizedHttpRequester(TestResources.bBridgeAPIBaseURI, TimeSpan.FromMinutes(10),  userPasswordAuthorizer))
             {
                 ResponseWaitNumAttempts = 60,
-                ResponseWaitTime = TimeSpan.FromSeconds(1)
+                ResponseWaitTime = TimeSpan.FromSeconds(3)
             };
 
             apiRequester.ReceiveResponseAsync((await apiRequester.RequestAsync(

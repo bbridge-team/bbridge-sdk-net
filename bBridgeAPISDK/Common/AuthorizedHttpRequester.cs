@@ -23,15 +23,16 @@ namespace bBridgeAPISDK.Common
         /// Constructor of basic authorized http requester
         /// </summary>
         /// <param name="baseUrl">Base API URL</param>
+        /// <param name="httpTimeout">HTTP Timeout</param>
         /// <param name="authorizer">Authorizer of a user</param>
-        public AuthorizedHttpRequester(string baseUrl, IAuthorizer authorizer)
+        public AuthorizedHttpRequester(string baseUrl, TimeSpan httpTimeout, IAuthorizer authorizer)
         {
             if (authorizer == null)
             {
                 throw new ArgumentException("authorizer can not be null");
             }
 
-            httpClient.Timeout = TimeSpan.FromMinutes(1);
+            httpClient.Timeout = httpTimeout;
             httpClient.BaseAddress = new Uri(baseUrl);
 
             //This supposed to be changed when we follow the standart
