@@ -23,6 +23,16 @@ namespace bBridgeAPISDK.Common
         /// Constructor of basic authorized http requester
         /// </summary>
         /// <param name="baseUrl">Base API URL</param>
+        /// <param name="authorizer">Authorizer of a user</param>
+        public AuthorizedHttpRequester(string baseUrl, IAuthorizer authorizer):
+            this(baseUrl, TimeSpan.MaxValue, authorizer)
+        {          
+        }
+
+        /// <summary>
+        /// Constructor of basic authorized http requester
+        /// </summary>
+        /// <param name="baseUrl">Base API URL</param>
         /// <param name="httpTimeout">HTTP Timeout</param>
         /// <param name="authorizer">Authorizer of a user</param>
         public AuthorizedHttpRequester(string baseUrl, TimeSpan httpTimeout, IAuthorizer authorizer)

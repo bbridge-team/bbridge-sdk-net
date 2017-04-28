@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>NUS.bBridge.bBridgeAPISDK</id>
-    <version>1.0.1</version>
+    <version>$version$</version>
     <title>bBridge API SDK .Net Classic</title>
     <authors>Aleksandr Farseev</authors>
     <owners>Aleksandr Farseev</owners>
