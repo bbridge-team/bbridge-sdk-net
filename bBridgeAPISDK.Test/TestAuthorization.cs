@@ -8,7 +8,7 @@ namespace bBridgeAPISDK.Test
         [Fact]
         public void TestCanReceiveAuthorizationTokenForUserNameAndPassword()
         {
-            Assert.True(Regex.IsMatch(userPasswordAuthorizer.Token, TestResources.JWTTokenRegex));
+            Assert.True(Regex.IsMatch(userPasswordAuthorizer.Token, bBridgeAPISDKNET.Test.TestResources.JWTTokenRegex));
         }
     }
 }

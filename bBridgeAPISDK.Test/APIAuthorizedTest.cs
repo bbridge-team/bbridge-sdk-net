@@ -8,13 +8,13 @@ namespace bBridgeAPISDK.Test
     public abstract class APIAuthorizedTest
     {
         protected IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
-                string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
+                string.IsNullOrEmpty(bBridgeAPISDKNET.Test.TestResources.bBridgeAPIUserName) ?
                     Environment.GetEnvironmentVariable("BBRIDGE_API_USER_NAME") :
-                    TestResources.bBridgeAPIUserName,
-                string.IsNullOrEmpty(TestResources.bBridgeAPIUserName) ?
+                    bBridgeAPISDKNET.Test.TestResources.bBridgeAPIUserName,
+                string.IsNullOrEmpty(bBridgeAPISDKNET.Test.TestResources.bBridgeAPIUserName) ?
                     Environment.GetEnvironmentVariable("BBRIDGE_API_PASSWORD") :
-                    TestResources.bBridgeAPIPassword,
-                Path.Combine(TestResources.bBridgeAPIBaseURI,
-                TestResources.bBridgeAPIAuthUrlSuffix));
+                    bBridgeAPISDKNET.Test.TestResources.bBridgeAPIPassword,
+                Path.Combine(bBridgeAPISDKNET.Test.TestResources.bBridgeAPIBaseURI,
+                bBridgeAPISDKNET.Test.TestResources.bBridgeAPIAuthUrlSuffix));
     }
 }

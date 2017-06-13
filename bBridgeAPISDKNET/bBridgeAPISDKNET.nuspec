@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>NUS.bBridge.bBridgeAPISDK</id>
-    <version>$version$</version>
+    <version>1.0.3</version>
     <title>bBridge API SDK .Net Classic</title>
     <authors>Aleksandr Farseev</authors>
     <owners>Aleksandr Farseev</owners>
@@ -11,7 +11,7 @@
     <iconUrl>http://bbridge.cloudapp.net/favicon.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>bBridge (NExT) API SDK is a .Net library for making calls to bBridge (NExT) API. The library enables users for making API calls from all .Net-enabled platforms</description>
-    <releaseNotes>Initial version</releaseNotes>
+    <releaseNotes>NUS.bBridge.bBridgeAPISDK for .Net 4.5</releaseNotes>
     <copyright>Copyright NExT Center 2017</copyright>
     <tags>Social Multimedia Analytics</tags>
   </metadata>

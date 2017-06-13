@@ -8,8 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace bBridgeAPISDK.Test
-{
+namespace bBridgeAPISDKNET.Test {
     using System;
     
     
@@ -23,7 +22,7 @@ namespace bBridgeAPISDK.Test
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class TestResources {
+    public class TestResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         

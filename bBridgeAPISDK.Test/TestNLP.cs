@@ -17,7 +17,7 @@ namespace bBridgeAPISDK.Test
         {
             //Wait 60 times 1 seconds each
             nlpProcessor = new NLProcessor(
-                new AuthorizedHttpRequester(TestResources.bBridgeAPIBaseURI, TimeSpan.FromMinutes(10),  userPasswordAuthorizer))
+                new AuthorizedHttpRequester(bBridgeAPISDKNET.Test.TestResources.bBridgeAPIBaseURI, TimeSpan.FromMinutes(10),  userPasswordAuthorizer))
             {
                 ResponseWaitNumAttempts = 60,
                 ResponseWaitTime = TimeSpan.FromSeconds(1)
