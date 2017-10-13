@@ -25,7 +25,7 @@ namespace bBridgeAPISDK.Test
         }
 
         [Fact]
-        public async Task TestCanRequestPOSDetectionAndReceiveResults()
+        public async Task TestCanRequestEnglishPOSDetectionAndReceiveResults()
         {
             var result = await nlpProcessor.DetectPartsOfSpeech(
                 new NLPUserGeneratedContent(new List<string> { "Putin is Trump's friend", "The weather is good :)" }),
@@ -41,9 +41,25 @@ namespace bBridgeAPISDK.Test
             }
         }
 
+        [Fact(Skip = "Not implemented yet")]
+        public async Task TestCanRequestChinesePOSDetectionAndReceiveResults()
+        {
+            var result = await nlpProcessor.DetectPartsOfSpeech(
+                new NLPUserGeneratedContent(new List<string> { "什么美丽的画面!", "今天是一个非常美好的一天 :)" }),
+                Language.English);
+
+            foreach (var tagList in result.PartOfSpeechTagLists)
+            {
+                foreach (var tag in tagList)
+                {
+                    Assert.False(string.IsNullOrEmpty(tag.Text));
+                    Assert.False(string.IsNullOrEmpty(tag.Type));
+                }
+            }
+        }
 
         [Fact]
-        public async Task TestCanRequestSentimentDetectionAndReceiveResults()
+        public async Task TestCanRequestEnglishSentimentDetectionAndReceiveResults()
         {
             var result = await nlpProcessor.DetectSentiment(
                 new NLPUserGeneratedContent(new List<string> { "Putin is Trump's friend", "The weather is good :)" }),
@@ -56,11 +72,43 @@ namespace bBridgeAPISDK.Test
         }
 
         [Fact]
-        public async Task TestCanRequestNERDetectionAndReceiveResults()
+        public async Task TestCanRequestChineseSentimentDetectionAndReceiveResults()
+        {
+            var result = await nlpProcessor.DetectSentiment(
+                new NLPUserGeneratedContent(new List<string> { "什么美丽的画面!", "今天是一个非常美好的一天 :)" }),
+                Language.English);
+
+            foreach (var sentiment in result.SentimentsList)
+            {
+                Assert.InRange(sentiment, 0, 1);
+            }
+        }
+
+        [Fact]
+        public async Task TestCanRequestEnglishNERDetectionAndReceiveResults()
         {
             var result = await nlpProcessor.RecognizeNamedEntities(
                 new NLPUserGeneratedContent(new List<string>
                     { "Putin is Trump's friend", "The weather is good :)" }),
+                Language.English);
+
+            foreach (var nerList in result.NamedEntityLists)
+            {
+                foreach (var ner in nerList)
+                {
+                    Assert.InRange(ner.Count, 1, int.MaxValue);
+                    Assert.False(string.IsNullOrEmpty(ner.Text));
+                    Assert.False(string.IsNullOrEmpty(ner.Type));
+                }
+            }
+        }
+
+        [Fact(Skip = "Not implemented yet")]
+        public async Task TestCanRequestChineseNERDetectionAndReceiveResults()
+        {
+            var result = await nlpProcessor.RecognizeNamedEntities(
+                new NLPUserGeneratedContent(new List<string>
+                    { "什么美丽的画面!", "今天是一个非常美好的一天 :)" }),
                 Language.English);
 
             foreach (var nerList in result.NamedEntityLists)

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="bBridgeAPIBaseURI" xml:space="preserve">
-    <value>http://bbridgeapi.cloudapp.net/v1/</value>
+    <value>http://somin.io:1024/v1/</value>
   </data>
   <data name="bBridgeAPIPassword" xml:space="preserve">
     <value />

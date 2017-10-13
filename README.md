@@ -1,6 +1,6 @@
-# bBridge API .Net SDK [![Build Status](https://travis-ci.org/bbridge-team/bbridge-sdk-net.svg?branch=master)](https://travis-ci.org/bbridge-team/bbridge-sdk-net) [![NuGet](https://img.shields.io/nuget/v/NUS.bBridge.bBridgeAPISDK.svg?style=flat)](https://www.nuget.org/packages/bBridgeAPISDK/)
+# bBridge .Net SDK for Somin API [![Build Status](https://travis-ci.org/bbridge-team/bbridge-sdk-net.svg?branch=master)](https://travis-ci.org/bbridge-team/bbridge-sdk-net) [![NuGet](https://img.shields.io/nuget/v/NUS.bBridge.bBridgeAPISDK.svg?style=flat)](https://www.nuget.org/packages/bBridgeAPISDK/)
 
-bBridge API SDK is a .Net (.Net Core 1.0.1 and .Net Framework 4.5.2) library for making calls to [bBridge (NExT) API](http://bbridge.cloudapp.net/developer). The library enables users for making API calls from all .Net-enabled platforms.
+bBridge API SDK for Somin API is a .Net (.Net Core 1.0.1 and .Net Framework 4.5.2) library for making calls to [Somin API](http://dev.somin.ai). The library enables users for making API calls from all .Net-enabled platforms.
 
 ## Example
 ```cs
@@ -57,8 +57,8 @@ Console.WriteLine(
 
 ## Testing
 - Install [.Net Core](https://www.microsoft.com/net/core#windowsvs2017) for your platform
-- Set environment variables **BBRIDGE_API_USER_NAME** and **BBRIDGE_API_PASSWORD** to bBridge API user name and password, respectively.
+- Set environment variables **USER_NAME** and **PASSWORD** to SoMin API user name and password, respectively.
 - run **dotnet test** in **bBridgeAPISDK.Test** directory
 
 ## API Documentation
-More information can be found on the [bBridge developer site](http://bbridge.cloudapp.net/developer).
+More information can be found on the [SoMin developer web site](http://dev.somin.ai).
