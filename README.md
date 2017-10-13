@@ -11,8 +11,8 @@ using bBridgeAPISDK.Common;
 using bBridgeAPISDK.UserProfiling.Individual;
 using bBridgeAPISDK.UserProfiling.Individual.Structs;
 
-string authorizationURL = "http://bbridgeapi.cloudapp.net/v1/auth";
-string apiBaseURL = "http://bbridgeapi.cloudapp.net/v1/";
+string authorizationURL = "http://somin.io:1024/v1/auth";
+string apiBaseURL = "http://somin.io:1024/v1/";
 
 IAuthorizer userPasswordAuthorizer = new LazyCredentialsAuthorizer(
     "<MyAPIUserName>",
