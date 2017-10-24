@@ -70,7 +70,7 @@ namespace bBridgeAPISDKNET.Test {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://bbridgeapi.cloudapp.net/v1/.
+        ///   Looks up a localized string similar to http://somin.io:1024/v1/.
         /// </summary>
         internal static string bBridgeAPIBaseURI {
             get {

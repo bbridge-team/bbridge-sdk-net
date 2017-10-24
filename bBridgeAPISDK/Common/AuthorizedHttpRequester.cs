@@ -69,7 +69,7 @@ namespace bBridgeAPISDK.Common
                             return responseTask.Result.Content.ReadAsStringAsync().
                                 ContinueWith(jsonTask => JsonConvert.DeserializeObject<T>(jsonTask.Result));
 
-                        if (responseTask.Result.StatusCode == HttpStatusCode.NoContent) return null;
+                        if (responseTask.Result.StatusCode == HttpStatusCode.NoContent) return Task.FromResult<T>(null);
 
                         throw new HttpRequestException(responseTask.Result.StatusCode.ToString());
                     }

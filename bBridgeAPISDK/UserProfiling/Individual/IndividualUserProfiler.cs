@@ -2,6 +2,7 @@
 using bBridgeAPISDK.Common;
 using bBridgeAPISDK.Common.Interfaces;
 using bBridgeAPISDK.UserProfiling.Individual.Structs;
+using System;
 
 namespace bBridgeAPISDK.UserProfiling.Individual
 {
@@ -28,9 +29,10 @@ namespace bBridgeAPISDK.UserProfiling.Individual
             UserGeneratedContent ugc,
             IndividualUserProfilingSettings settings)
         {
-            return await ReceiveResponseAsync<IndividualUserProfiling>(
-                (await RequestAsync(ugc, bBridgeAPIURLSuffixes.IndividualUserProfilingCallSuffix +
-                settings.GenerateURLAttributeString())).Id);
+            var requestInfo = await RequestAsync(ugc, bBridgeAPIURLSuffixes.IndividualUserProfilingCallSuffix +
+                settings.GenerateURLAttributeString());
+
+            return await ReceiveResponseAsync<IndividualUserProfiling>(requestInfo.Id);
         }
     }
 }

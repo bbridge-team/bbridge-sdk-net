@@ -5,6 +5,9 @@ using bBridgeAPISDK.Common.Interfaces;
 using bBridgeAPISDK.ImageProcessing.Structs;
 using Moq;
 using Xunit;
+#if NET
+using bBridgeAPISDKNET.Test;
+#endif
 
 namespace bBridgeAPISDK.Test
 {

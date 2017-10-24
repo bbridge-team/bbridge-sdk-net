@@ -2,6 +2,9 @@
 using System.IO;
 using bBridgeAPISDK.Common.Authorization;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
+#if NET
+using bBridgeAPISDKNET.Test;
+#endif
 
 namespace bBridgeAPISDK.Test
 {
