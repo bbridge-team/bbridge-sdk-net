@@ -2,8 +2,8 @@
 using System.IO;
 using bBridgeAPISDK.Common.Authorization;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
-#if !NETCORE
-using bBridgeAPISDKNET.Test;
+#if NETCORE
+using bBridgeAPISDKNETCore.Test;
 #endif
 
 namespace bBridgeAPISDK.Test

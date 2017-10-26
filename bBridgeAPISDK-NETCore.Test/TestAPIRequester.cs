@@ -5,8 +5,8 @@ using bBridgeAPISDK.Common.Interfaces;
 using bBridgeAPISDK.ImageProcessing.Structs;
 using Moq;
 using Xunit;
-#if !NETCORE
-using bBridgeAPISDKNET.Test;
+#if NETCORE
+using bBridgeAPISDKNETCore.Test;
 #endif
 
 namespace bBridgeAPISDK.Test

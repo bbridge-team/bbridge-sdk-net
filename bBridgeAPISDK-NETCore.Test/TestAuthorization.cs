@@ -1,7 +1,6 @@
-using System.Text.RegularExpressions;
 using Xunit;
-#if !NETCORE
-using bBridgeAPISDKNET.Test;
+#if NETCORE
+using bBridgeAPISDKNETCore.Test;
 #endif
 
 namespace bBridgeAPISDK.Test

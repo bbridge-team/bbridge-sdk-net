@@ -5,8 +5,8 @@ using bBridgeAPISDK.Common;
 using bBridgeAPISDK.UserProfiling.Individual;
 using bBridgeAPISDK.UserProfiling.Individual.Structs;
 using Xunit;
-#if !NETCORE
-using bBridgeAPISDKNET.Test;
+#if NETCORE
+using bBridgeAPISDKNETCore.Test;
 #endif
 
 namespace bBridgeAPISDK.Test
