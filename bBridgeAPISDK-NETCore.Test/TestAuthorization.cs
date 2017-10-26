@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 using Xunit;
-#if NET
+#if !NETCORE
 using bBridgeAPISDKNET.Test;
 #endif
 

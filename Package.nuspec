@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>NUS.bBridge.bBridgeAPISDK</id>
+    <version>1.0.4</version>
+    <authors>Aleksandr Farseev</authors>
+    <owners>bbridge</owners>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <projectUrl>http://developer.bbridge.net/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>bBridge (NExT) API SDK is a .Net library for making calls to bBridge (NExT) API. The library enables users for making API calls from all .Net-enabled platforms</description>
+    <releaseNotes>NUS.bBridge.bBridgeAPISDK for .Net 4.5</releaseNotes>
+    <copyright>bBridge Analytics</copyright>
+    <tags>Social Multimedia Analytics</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="8.0.3" />
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="bBridgeAPISDK\bin\Release\bBridgeAPISDKNET.dll" target="build" />
+    <file src="bBridgeAPISDK\bin\Release\bBridgeAPISDKNET.xml" target="build" />
+  </files>
+</package>

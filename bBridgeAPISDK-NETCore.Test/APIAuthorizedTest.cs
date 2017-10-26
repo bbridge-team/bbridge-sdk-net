@@ -2,7 +2,7 @@
 using System.IO;
 using bBridgeAPISDK.Common.Authorization;
 using bBridgeAPISDK.Common.Authorization.Interfaces;
-#if NET
+#if !NETCORE
 using bBridgeAPISDKNET.Test;
 #endif
 

@@ -6,7 +6,7 @@ using bBridgeAPISDK.Common.Enums;
 using bBridgeAPISDK.NLP;
 using bBridgeAPISDK.NLP.Structs;
 using Xunit;
-#if NET
+#if !NETCORE
 using bBridgeAPISDKNET.Test;
 #endif
 

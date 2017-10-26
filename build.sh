@@ -1,3 +1,3 @@
-cd ./bBridgeAPISDK.Test
+cd ./bBridgeAPISDK-NETCore.Test
 dotnet restore
-dotnet test -p:ParallelizeTestCollections=false
+dotnet test
