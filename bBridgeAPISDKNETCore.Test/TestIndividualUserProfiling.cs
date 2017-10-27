@@ -6,6 +6,10 @@ using bBridgeAPISDK.UserProfiling.Individual;
 using bBridgeAPISDK.UserProfiling.Individual.Structs;
 using Xunit;
 
+#if NETCORE
+using bBridgeAPISDKNETCore.Test;
+#endif
+
 namespace bBridgeAPISDK.Test
 {
     public class TestIndividualUserProfiling: APIAuthorizedTest
@@ -35,7 +39,8 @@ namespace bBridgeAPISDK.Test
                             "https://pbs.twimg.com/media/C6jO3UiVoAQYc_8.jpg"
                         }
                     ),
-                new IndividualUserProfilingSettings {
+                new IndividualUserProfilingSettings
+                {
                     AgeGroup = true,
                     EducationLevel = true,
                     Gender = true,
@@ -43,7 +48,7 @@ namespace bBridgeAPISDK.Test
                     OccupationIndustry = true,
                     RelationshipStatus = true
                 });
-            
+
             Assert.False(string.IsNullOrEmpty(result.Profile.Gender));
             Assert.False(string.IsNullOrEmpty(result.Profile.AgeGroup));
             Assert.False(string.IsNullOrEmpty(result.Profile.EducationLevel));

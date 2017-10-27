@@ -6,6 +6,10 @@ using bBridgeAPISDK.ImageProcessing;
 using bBridgeAPISDK.ImageProcessing.Structs;
 using Xunit;
 
+#if NETCORE
+using bBridgeAPISDKNETCore.Test;
+#endif
+
 namespace bBridgeAPISDK.Test
 {
     public class TestImageProcessing: APIAuthorizedTest
@@ -48,7 +52,7 @@ namespace bBridgeAPISDK.Test
 
             foreach (var distribution in result.ImageConceptDistributions)
             {
-                Assert.Equal(distribution.Concepts.Count, 5);
+                Assert.Equal(5, distribution.Concepts.Count);
 
                 foreach (var concept in distribution.Concepts)
                 {

@@ -22,7 +22,8 @@ namespace bBridgeAPISDK.Common.Authorization
         /// <summary>
         /// API authorization Token
         /// </summary>
-        public string Token { get; }
+        // ReSharper disable once AutoPropertyCanBeMadeGetOnly.Local
+        public string Token { get; private set; }
 
         #endregion
     }

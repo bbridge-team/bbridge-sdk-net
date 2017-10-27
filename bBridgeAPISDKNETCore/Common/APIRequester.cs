@@ -30,7 +30,7 @@ namespace bBridgeAPISDK.Common
             {
                 throw new ArgumentException("requester must be specified in order to make API calls");
             }
-            
+
             this.requester = requester;
 
             ResponseWaitTime = TimeSpan.FromMilliseconds(responseWaitTimeMilliseconds);
@@ -78,7 +78,6 @@ namespace bBridgeAPISDK.Common
             while (numAttempts-- > 0 && response == null)
             {
                 await Task.Delay(ResponseWaitTime);
-                        
                 response = await requester.RequestAsync<T>(bBridgeAPIURLSuffixes.ApiResponseSuffix + requestId);
             }
 

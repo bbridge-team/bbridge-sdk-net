@@ -1,5 +1,8 @@
-using System.Text.RegularExpressions;
 using Xunit;
+
+#if NETCORE
+using bBridgeAPISDKNETCore.Test;
+#endif
 
 namespace bBridgeAPISDK.Test
 {
@@ -8,7 +11,7 @@ namespace bBridgeAPISDK.Test
         [Fact]
         public void TestCanReceiveAuthorizationTokenForUserNameAndPassword()
         {
-            Assert.True(Regex.IsMatch(userPasswordAuthorizer.Token, TestResources.JWTTokenRegex));
+            Assert.Matches(TestResources.JWTTokenRegex, userPasswordAuthorizer.Token);
         }
     }
 }

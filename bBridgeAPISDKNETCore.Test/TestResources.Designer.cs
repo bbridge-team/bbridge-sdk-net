@@ -8,8 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace bBridgeAPISDKNET.Test {
+namespace bBridgeAPISDKNETCore.Test {
     using System;
+    using System.Reflection;
     
     
     /// <summary>
@@ -39,7 +40,7 @@ namespace bBridgeAPISDKNET.Test {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("bBridgeAPISDKNET.Test.TestResources", typeof(TestResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("bBridgeAPISDKNETCore.Test.TestResources", typeof(TestResources).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -70,7 +71,7 @@ namespace bBridgeAPISDKNET.Test {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to http://bbridgeapi.cloudapp.net/v1/.
+        ///   Looks up a localized string similar to http://somin.io:1024/v1/.
         /// </summary>
         internal static string bBridgeAPIBaseURI {
             get {
