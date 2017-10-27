@@ -1,3 +1,3 @@
-cd ./bBridgeAPISDK-NETCore.Test
+cd ./bBridgeAPISDKNETCore.Test
 dotnet restore
 dotnet test

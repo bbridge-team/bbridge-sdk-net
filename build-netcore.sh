@@ -1,7 +1,7 @@
 #!/bin/bash
 
-projectPath="./bBridgeAPISDK-NETCore"
-testsPath="./bBridgeAPISDK-NETCore.Test"
+projectPath="./bBridgeAPISDKNETCore"
+testsPath="./bBridgeAPISDKNETCore.Test"
 buildConfiguration="Release"
 
 dotnet restore $testsPath
