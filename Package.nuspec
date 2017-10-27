@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>NUS.bBridge.bBridgeAPISDK</id>
+    <id>SoMin.API.SDK</id>
     <version>1.0.4</version>
-    <authors>Aleksandr Farseev</authors>
-    <owners>bbridge</owners>
+    <authors>bBridge Team</authors>
+    <owners>bBridge Team</owners>
     <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
-    <projectUrl>http://developer.bbridge.net/</projectUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>bBridge (NExT) API SDK is a .Net library for making calls to bBridge (NExT) API. The library enables users for making API calls from all .Net-enabled platforms</description>
-    <releaseNotes>NUS.bBridge.bBridgeAPISDK for .Net 4.5</releaseNotes>
-    <copyright>bBridge Analytics</copyright>
+    <projectUrl>http://dev.somin.ai/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>SoMin API SDK is a .Net library for making calls to SoMin API. The library enables users for making API calls from all .Net-enabled platforms</description>
+    <releaseNotes>SoMin.API.SDK for .Net 4.5</releaseNotes>
+    <copyright>bBridge Team</copyright>
     <tags>Social Multimedia Analytics</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="8.0.3" />

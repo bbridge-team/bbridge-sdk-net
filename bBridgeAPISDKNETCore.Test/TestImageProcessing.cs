@@ -5,6 +5,7 @@ using bBridgeAPISDK.Common;
 using bBridgeAPISDK.ImageProcessing;
 using bBridgeAPISDK.ImageProcessing.Structs;
 using Xunit;
+
 #if NETCORE
 using bBridgeAPISDKNETCore.Test;
 #endif

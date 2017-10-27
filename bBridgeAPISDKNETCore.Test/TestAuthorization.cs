@@ -1,4 +1,5 @@
 using Xunit;
+
 #if NETCORE
 using bBridgeAPISDKNETCore.Test;
 #endif

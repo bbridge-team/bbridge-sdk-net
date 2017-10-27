@@ -71,22 +71,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\bBridgeAPISDK-NETCore.Test\APIAuthorizedTest.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore.Test\APIAuthorizedTest.cs">
       <Link>APIAuthorizedTest.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore.Test\TestAPIRequester.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore.Test\TestAPIRequester.cs">
       <Link>TestAPIRequester.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore.Test\TestAuthorization.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore.Test\TestAuthorization.cs">
       <Link>TestAuthorization.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore.Test\TestImageProcessing.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore.Test\TestImageProcessing.cs">
       <Link>TestImageProcessing.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore.Test\TestIndividualUserProfiling.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore.Test\TestIndividualUserProfiling.cs">
       <Link>TestIndividualUserProfiling.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore.Test\TestNLP.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore.Test\TestNLP.cs">
       <Link>TestNLP.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

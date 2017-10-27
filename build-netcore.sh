@@ -7,4 +7,4 @@ buildConfiguration="Release"
 dotnet restore $testsPath
 dotnet test $testsPath
 dotnet build --configuration $buildConfiguration $projectPath
-$SHELL
+dotnet pack --configuration $buildConfiguration $projectPath

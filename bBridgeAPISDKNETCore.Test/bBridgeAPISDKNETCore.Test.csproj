@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\bBridgeAPISDK-NETCore\bBridgeAPISDK-NETCore.csproj" />
+    <ProjectReference Include="..\bBridgeAPISDKNETCore\bBridgeAPISDKNETCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

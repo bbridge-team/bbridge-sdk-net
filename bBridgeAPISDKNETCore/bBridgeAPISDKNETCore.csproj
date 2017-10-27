@@ -3,22 +3,24 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>bBridgeAPISDK</AssemblyName>
-    <PackageId>NetCore.NUS.bBridge.bBridgeAPISDK</PackageId>
+    <PackageId>SoMin.API.SDK</PackageId>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
 	<NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Aleksandr Farseev</Authors>
-    <Description>bBridge API SDK is a .Net library for making calls to bBridge (NExT) API. The library enables users for making API calls from all .Net-enabled platforms.</Description>
-    <Copyright>Copyright NExT Center 2017</Copyright>
+    <Authors>bBridge Team</Authors>
+    <Description>SoMin API SDK is a .Net library for making calls to SoMin API. The library enables users for making API calls from all .Net-enabled platforms</Description>
+    <Copyright>bBridge Team</Copyright>
     <PackageIconUrl>http://bbridge.cloudapp.net/favicon.ico</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/bbridge-team</PackageProjectUrl>
+    <PackageProjectUrl>http://dev.somin.ai/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/bbridge-team/bbridge-sdk-net</RepositoryUrl>
     <PackageLicenseUrl>http://opensource.org/licenses/Apache-2.0</PackageLicenseUrl>
-    <PackageTags>.Net Core bBridge API SDK</PackageTags>
-    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
+    <PackageTags>Social Multimedia Analytics</PackageTags>
+    <PackageReleaseNotes>SoMin.API.SDK for .Net 4.5</PackageReleaseNotes>
+    <Version>1.0.4</Version>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

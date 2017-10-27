@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bBridgeAPISDK-NETCore", "bBridgeAPISDK-NETCore\bBridgeAPISDK-NETCore.csproj", "{192708A3-DC71-472F-96D2-4ABA56696153}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bBridgeAPISDKNETCore", "bBridgeAPISDKNETCore\bBridgeAPISDKNETCore.csproj", "{192708A3-DC71-472F-96D2-4ABA56696153}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bBridgeAPISDK-NETCore.Test", "bBridgeAPISDK-NETCore.Test\bBridgeAPISDK-NETCore.Test.csproj", "{5E20E497-2234-490C-B56F-4B1CAC3CF88D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bBridgeAPISDKNETCore.Test", "bBridgeAPISDKNETCore.Test\bBridgeAPISDKNETCore.Test.csproj", "{5E20E497-2234-490C-B56F-4B1CAC3CF88D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

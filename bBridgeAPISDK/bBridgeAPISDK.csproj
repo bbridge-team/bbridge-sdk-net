@@ -49,85 +49,85 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\bBridgeAPISDK-NETCore\Common\APIRequester.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\Common\APIRequester.cs">
       <Link>Common\APIRequester.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\Common\Authorization\CredentialsAuthorizer.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\Common\Authorization\CredentialsAuthorizer.cs">
       <Link>Common\Authorization\CredentialsAuthorizer.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\Common\Authorization\Interfaces\IAuthorizer.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\Common\Authorization\Interfaces\IAuthorizer.cs">
       <Link>Common\Authorization\Interfaces\IAuthorizer.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\Common\Authorization\StoredTokenAuthorizer.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\Common\Authorization\StoredTokenAuthorizer.cs">
       <Link>Common\Authorization\StoredTokenAuthorizer.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\Common\Authorization\Structs\AuthorizationToken.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\Common\Authorization\Structs\AuthorizationToken.cs">
       <Link>Common\Authorization\Structs\AuthorizationToken.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\Common\Authorization\Structs\Credentials.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\Common\Authorization\Structs\Credentials.cs">
       <Link>Common\Authorization\Structs\Credentials.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\Common\AuthorizedHttpRequester.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\Common\AuthorizedHttpRequester.cs">
       <Link>Common\AuthorizedHttpRequester.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\Common\bBridgeAPIURLSuffixes.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\Common\bBridgeAPIURLSuffixes.cs">
       <Link>Common\bBridgeAPIURLSuffixes.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\Common\Enums\Language.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\Common\Enums\Language.cs">
       <Link>Common\Enums\Language.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\Common\Interfaces\IAsyncHttpRequester.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\Common\Interfaces\IAsyncHttpRequester.cs">
       <Link>Common\Interfaces\IAsyncHttpRequester.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\Common\Interfaces\IResponseListener.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\Common\Interfaces\IResponseListener.cs">
       <Link>Common\Interfaces\IResponseListener.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\Common\Structs\ErrorMessage.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\Common\Structs\ErrorMessage.cs">
       <Link>Common\Structs\ErrorMessage.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\Common\Structs\RequestInfo.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\Common\Structs\RequestInfo.cs">
       <Link>Common\Structs\RequestInfo.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\ImageProcessing\ImageProcessor.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\ImageProcessing\ImageProcessor.cs">
       <Link>ImageProcessing\ImageProcessor.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\ImageProcessing\Structs\ConceptDetectionData.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\ImageProcessing\Structs\ConceptDetectionData.cs">
       <Link>ImageProcessing\Structs\ConceptDetectionData.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\ImageProcessing\Structs\ImageConcepts.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\ImageProcessing\Structs\ImageConcepts.cs">
       <Link>ImageProcessing\Structs\ImageConcepts.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\ImageProcessing\Structs\ImageObjects.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\ImageProcessing\Structs\ImageObjects.cs">
       <Link>ImageProcessing\Structs\ImageObjects.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\ImageProcessing\Structs\ObjectDetectionData.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\ImageProcessing\Structs\ObjectDetectionData.cs">
       <Link>ImageProcessing\Structs\ObjectDetectionData.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\NLP\NLProcessor.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\NLP\NLProcessor.cs">
       <Link>NLP\NLProcessor.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\NLP\Structs\NamedEntities.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\NLP\Structs\NamedEntities.cs">
       <Link>NLP\Structs\NamedEntities.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\NLP\Structs\NLPUserGeneratedContent.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\NLP\Structs\NLPUserGeneratedContent.cs">
       <Link>NLP\Structs\NLPUserGeneratedContent.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\NLP\Structs\POSTags.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\NLP\Structs\POSTags.cs">
       <Link>NLP\Structs\POSTags.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\NLP\Structs\Sentiments.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\NLP\Structs\Sentiments.cs">
       <Link>NLP\Structs\Sentiments.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\UserProfiling\Individual\IndividualUserProfiler.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\UserProfiling\Individual\IndividualUserProfiler.cs">
       <Link>UserProfiling\Individual\IndividualUserProfiler.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\UserProfiling\Individual\Structs\IndividualUserProfile.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\UserProfiling\Individual\Structs\IndividualUserProfile.cs">
       <Link>UserProfiling\Individual\Structs\IndividualUserProfile.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\UserProfiling\Individual\Structs\IndividualUserProfilingSettings.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\UserProfiling\Individual\Structs\IndividualUserProfilingSettings.cs">
       <Link>UserProfiling\Individual\Structs\IndividualUserProfilingSettings.cs</Link>
     </Compile>
-    <Compile Include="..\bBridgeAPISDK-NETCore\UserProfiling\Individual\Structs\UserGeneratedContent.cs">
+    <Compile Include="..\bBridgeAPISDKNETCore\UserProfiling\Individual\Structs\UserGeneratedContent.cs">
       <Link>UserProfiling\Individual\Structs\UserGeneratedContent.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
