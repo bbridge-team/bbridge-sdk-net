@@ -45,7 +45,7 @@ namespace bBridgeAPISDK.Test
             }
         }
 
-        [Fact(Skip = "Not implemented yet")]
+        [Fact]
         public async Task TestCanRequestChinesePOSDetectionAndReceiveResults()
         {
             var result = await nlpProcessor.DetectPartsOfSpeech(
@@ -107,7 +107,7 @@ namespace bBridgeAPISDK.Test
             }
         }
 
-        [Fact(Skip = "Not implemented yet")]
+        [Fact]
         public async Task TestCanRequestChineseNERDetectionAndReceiveResults()
         {
             var result = await nlpProcessor.RecognizeNamedEntities(

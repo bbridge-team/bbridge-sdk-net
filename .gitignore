@@ -189,6 +189,9 @@ $RECYCLE.BIN/
 # Visual Studio temp something
 .vs/
 
+# Visual Studio code
+.vscode/
+
 **/node_modules/*
 
 #####
